@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.44
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24909106, g: 0.25450397, b: 0.23886842, a: 0.44}
+  m_IndirectSpecularColor: {r: 0.056019694, g: 0.05902493, b: 0.053274628, a: 0.44}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3849,7 +3849,7 @@ GameObject:
   - component: {fileID: 951023480}
   - component: {fileID: 951023479}
   - component: {fileID: 951023478}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -3888,7 +3888,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 951023477}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -4611,6 +4611,7 @@ MonoBehaviour:
   isView: 1
   lightSource: {fileID: 1591070797}
   viewSource: {fileID: 2010221271}
+  torchSound: {fileID: 0}
 --- !u!114 &1076331432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8343,7 +8344,7 @@ GameObject:
   - component: {fileID: 2010221274}
   - component: {fileID: 2010221273}
   - component: {fileID: 2010221272}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: postProcess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
