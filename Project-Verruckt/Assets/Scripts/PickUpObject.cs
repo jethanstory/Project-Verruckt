@@ -17,6 +17,9 @@ public class PickUpObject : MonoBehaviour
     public GameObject viewSource;
     public bool notColor = false;
     public bool canPill = false;
+    public bool isViewing = false;
+    public float pillTime;
+    public float maxTime;
 
 
     //public Collider sphereColl;
@@ -45,6 +48,7 @@ public class PickUpObject : MonoBehaviour
             //{
             pillSound.SetActive(true);
             canPill = true;
+            //pillTime = 0;
             
                 //Destroy(pills);
                 
@@ -62,7 +66,9 @@ public class PickUpObject : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V) && canPill)
         {
+            isViewing = true;
             viewSource.SetActive(false);
+            
             // if (notColor == false)
             //     {
                     
@@ -75,8 +81,17 @@ public class PickUpObject : MonoBehaviour
                 
             //     viewSource.SetActive(false);
             //     notColor = false;
-            // }
-            
+            // }  
+        }
+
+        if (isViewing)
+        {
+            pillTime += Time.deltaTime;
+
+            if (pillTime >= maxTime)
+            {
+                viewSource.SetActive(true);
+            }
         } 
         else
         {
