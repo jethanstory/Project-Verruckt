@@ -15,6 +15,7 @@ public class PickUpObject : MonoBehaviour
     public GameObject pillSound;
     public GameObject pills;
     public GameObject viewSource;
+    public GameObject hintSource;
     public bool notColor = false;
     public bool canPill = false;
     public bool isViewing = false;
@@ -68,6 +69,7 @@ public class PickUpObject : MonoBehaviour
         {
             isViewing = true;
             viewSource.SetActive(false);
+            hintSource.SetActive(true);
             
             // if (notColor == false)
             //     {
@@ -91,6 +93,7 @@ public class PickUpObject : MonoBehaviour
             if (pillTime >= maxTime)
             {
                 viewSource.SetActive(true);
+                hintSource.SetActive(false);
             }
         } 
         else
