@@ -6,9 +6,7 @@ using UnityEngine;
 public class FlashLightMech : MonoBehaviour
 {
     public bool isOn = false;
-    public bool isView = false;
     public GameObject lightSource;
-    public GameObject viewSource;
 
     public GameObject torchSound;
 
@@ -35,22 +33,6 @@ public class FlashLightMech : MonoBehaviour
             }
             
         } 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            if (isView == false)
-                {
-                    
-                    viewSource.SetActive(true);
-                    isView = true;
-                }
-
-            else if (isView == true)
-            {
-                
-                viewSource.SetActive(false);
-                isView = false;
-            }
-            
-        } 
+        
     }
 }
