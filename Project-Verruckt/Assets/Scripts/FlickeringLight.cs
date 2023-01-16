@@ -56,15 +56,32 @@ public class FlickeringLight : MonoBehaviour
         if (FlickerMode == 2)
         {
             //this.gameObject.GetComponent<Light>().enabled = false;
-            //RandomIntensity = Random.Range(0f, 3.1f);
+            lightSource.SetActive(false);
+            //FlickerTime = Random.Range(0f, 1f);
+            //RandomIntensity = Random.Range(0f, 1f);
             //light.intensity = RandomIntensity;
-            //FlickerTime = Random.Range(0f, 0.05f);
+            //FlickerTime = Random.Range(0f, 100f);
+            FlickerTime = Random.Range(0f, 100f);
             yield return new WaitForSeconds(FlickerTime);
-            //RandomIntensity = Random.Range(0f, 3.1f);
+            //RandomIntensity = Random.Range(0f, 1f);
             //light.intensity = RandomIntensity;
+            lightSource.SetActive(true);
             //this.gameObject.GetComponent<Light>().enabled = true;
             isFlickering = false;
         }
+
+        // if (FlickerMode == 2)
+        // {
+        //     //this.gameObject.GetComponent<Light>().enabled = false;
+        //     //RandomIntensity = Random.Range(0f, 3.1f);
+        //     //light.intensity = RandomIntensity;
+        //     //FlickerTime = Random.Range(0f, 0.05f);
+        //     yield return new WaitForSeconds(FlickerTime);
+        //     //RandomIntensity = Random.Range(0f, 3.1f);
+        //     //light.intensity = RandomIntensity;
+        //     //this.gameObject.GetComponent<Light>().enabled = true;
+        //     isFlickering = false;
+        // }
          if (FlickerMode == 3)
         {
             FlickerMode = Random.Range(1, 3);
