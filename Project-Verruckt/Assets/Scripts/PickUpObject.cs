@@ -16,11 +16,15 @@ public class PickUpObject : MonoBehaviour
     public GameObject pills;
     public GameObject viewSource;
     public GameObject hintSource;
+    public GameObject shadowPerson;
     public bool notColor = false;
     public bool canPill = false;
     public bool isViewing = false;
     public float pillTime;
     public float maxTime;
+
+    public int pillsTaken;
+    public int maxPills;
 
 
     //public Collider sphereColl;
@@ -70,6 +74,8 @@ public class PickUpObject : MonoBehaviour
             isViewing = true;
             viewSource.SetActive(false);
             hintSource.SetActive(true);
+
+            pillsTaken += 1;
             
             // if (notColor == false)
             //     {
@@ -95,6 +101,11 @@ public class PickUpObject : MonoBehaviour
                 viewSource.SetActive(true);
                 hintSource.SetActive(false);
             }
+            if (pillsTaken > maxPills)
+            {
+                shadowPerson.SetActive(true);
+            }
+
         } 
         else
         {
