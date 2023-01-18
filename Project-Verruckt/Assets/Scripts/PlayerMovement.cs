@@ -52,15 +52,12 @@ public class PlayerMovement : MonoBehaviour
                 canSprint = false;
 
         }
-        if (Input.GetKey(KeyCode.C))
-        {
-            controller.height = 1.0f;
-        }
+        
     
         else
         {
             speed = 3f; //12
-            controller.height = 2.0f;
+            
             if (sprintTime < 7000)
                 sprintTime += 20; //1
            else if (sprintTime == 7000)
