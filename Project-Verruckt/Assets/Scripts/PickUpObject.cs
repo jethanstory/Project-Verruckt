@@ -51,6 +51,7 @@ public class PickUpObject : MonoBehaviour
                 //sphereColl.enabled = !sphereColl.enabled;
             //if (Input.GetKeyDown("e"))  // can be e or any key
             //{
+            pillSound.SetActive(false);
             pillSound.SetActive(true);
             canPill = true;
             //pillTime = 0;
@@ -100,6 +101,8 @@ public class PickUpObject : MonoBehaviour
             {
                 viewSource.SetActive(true);
                 hintSource.SetActive(false);
+                pillsTaken -= 1;
+                isViewing = false;
             }
             if (pillsTaken > maxPills)
             {
@@ -109,6 +112,7 @@ public class PickUpObject : MonoBehaviour
         } 
         else
         {
+            pillTime = 0;
             //pillSound.SetActive(false);
         }
         //if (Input.GetKeyDown("q") && hasItem == true) // if you have an item and get the key to remove the object, again can be any key
