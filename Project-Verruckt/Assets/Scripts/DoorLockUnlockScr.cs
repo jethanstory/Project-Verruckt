@@ -8,7 +8,7 @@ public class DoorLockUnlockScr : MonoBehaviour
     public GameObject doorLockedSound;
 
     public GameObject fpsPlayer;
-    public bool canLeave;
+    public bool canLeave = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class DoorLockUnlockScr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkKey();
+        
 
     }
 
@@ -26,8 +26,17 @@ public class DoorLockUnlockScr : MonoBehaviour
     {
         if(other.gameObject.tag == "ExitDoor") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
-            doorLockedSound.SetActive(false);
-            doorLockedSound.SetActive(true);
+            checkKey();
+            if (canLeave)
+            {
+                SceneManager.LoadScene("HallsStart");
+            }
+            else
+            {
+                doorLockedSound.SetActive(false);
+                doorLockedSound.SetActive(true);
+            }
+            
         }
     }
     private void OnTriggerExit(Collider other)
