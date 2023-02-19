@@ -17,6 +17,8 @@ public class PickUpObject : MonoBehaviour
     public GameObject viewSource;
     public GameObject hintSource;
     public GameObject shadowPerson;
+    public GameObject realObjects;
+    public GameObject otherObjects;
     public bool notColor = false;
     public bool canPill = false;
     public bool isViewing = false;
@@ -25,6 +27,8 @@ public class PickUpObject : MonoBehaviour
 
     public int pillsTaken;
     public int maxPills;
+
+    public int pillsCollected;
 
 
     //public Collider sphereColl;
@@ -45,7 +49,7 @@ public class PickUpObject : MonoBehaviour
     {
         if(canpickup == true) // if you enter thecollider of the objecct
         {
-            Debug.Log("HIT");
+            //Debug.Log("HIT");
 
 
                 //sphereColl.enabled = !sphereColl.enabled;
@@ -53,7 +57,9 @@ public class PickUpObject : MonoBehaviour
             //{
             pillSound.SetActive(false);
             pillSound.SetActive(true);
-            canPill = true;
+            
+            
+            //canPill = true;
             //pillTime = 0;
             
                 //Destroy(pills);
@@ -70,12 +76,15 @@ public class PickUpObject : MonoBehaviour
             //}
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && canPill)
+        if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
         {
             isViewing = true;
-            viewSource.SetActive(false);
+            viewSource.SetActive(true); //viewSource.SetActive(false);
             hintSource.SetActive(true);
+            otherObjects.SetActive(true);
+            realObjects.SetActive(false);
 
+            pillsCollected -= 1;
             pillsTaken += 1;
             
             // if (notColor == false)
@@ -99,8 +108,10 @@ public class PickUpObject : MonoBehaviour
 
             if (pillTime >= maxTime)
             {
-                viewSource.SetActive(true);
+                viewSource.SetActive(false); //viewSource.SetActive(true);
                 hintSource.SetActive(false);
+                otherObjects.SetActive(false);
+                realObjects.SetActive(true);
                 pillsTaken -= 1;
                 isViewing = false;
             }
@@ -131,6 +142,7 @@ public class PickUpObject : MonoBehaviour
             canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
+            pillsCollected += 1;
         }
     }
     private void OnTriggerExit(Collider other)
