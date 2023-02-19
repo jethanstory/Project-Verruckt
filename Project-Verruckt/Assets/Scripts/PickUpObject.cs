@@ -47,34 +47,34 @@ public class PickUpObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canpickup == true) // if you enter thecollider of the objecct
-        {
-            //Debug.Log("HIT");
+        // if(canpickup == true) // if you enter thecollider of the objecct
+        // {
+        //     //Debug.Log("HIT");
 
 
-                //sphereColl.enabled = !sphereColl.enabled;
-            //if (Input.GetKeyDown("e"))  // can be e or any key
-            //{
-            pillSound.SetActive(false);
-            pillSound.SetActive(true);
+        //         //sphereColl.enabled = !sphereColl.enabled;
+        //     //if (Input.GetKeyDown("e"))  // can be e or any key
+        //     //{
+        //     pillSound.SetActive(false);
+        //     pillSound.SetActive(true);
             
             
-            //canPill = true;
-            //pillTime = 0;
+        //     //canPill = true;
+        //     //pillTime = 0;
             
-                //Destroy(pills);
+        //         //Destroy(pills);
                 
                 
 
-                //GameObject.Find("playerBody").GetComponent<ThrowingObject>().enabled = true;
+        //         //GameObject.Find("playerBody").GetComponent<ThrowingObject>().enabled = true;
 
-                //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;   //makes the rigidbody not be acted upon by forces
-                //ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
-                //ObjectIwantToPickUp.transform.rotation = myHands.transform.rotation; // sets the position of the object to your hand position
-                //ObjectIwantToPickUp.transform.parent = myHands.transform; //makes the object become a child of the parent so that it moves with the hands
+        //         //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;   //makes the rigidbody not be acted upon by forces
+        //         //ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
+        //         //ObjectIwantToPickUp.transform.rotation = myHands.transform.rotation; // sets the position of the object to your hand position
+        //         //ObjectIwantToPickUp.transform.parent = myHands.transform; //makes the object become a child of the parent so that it moves with the hands
                 
-            //}
-        }
+        //     //}
+        // }
 
         if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
         {
@@ -139,10 +139,12 @@ public class PickUpObject : MonoBehaviour
     {
         if(other.gameObject.tag == "Pills") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
-            canpickup = true;  //set the pick up bool to true
+            //canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
             pillsCollected += 1;
+            pillSound.SetActive(false);
+            pillSound.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
