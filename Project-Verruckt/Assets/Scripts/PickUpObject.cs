@@ -28,7 +28,7 @@ public class PickUpObject : MonoBehaviour
     public int pillsTaken;
     public int maxPills;
 
-    public int pillsCollected;
+    public int pillsCollected; 
 
 
     //public Collider sphereColl;
