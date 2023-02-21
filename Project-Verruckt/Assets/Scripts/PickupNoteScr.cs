@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupNoteScr : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class PickupNoteScr : MonoBehaviour
     public GameObject notesCanvas;
     public bool activeCanvas;
     public GameObject infoText;
+    public GameObject fpsPlayer;
 
+    public Text Txt;
 
+    
 
-    public GameObject notePad;
+    public GameObject noteSecondCanvas;
 
 
     // Start is called before the first frame update
@@ -54,6 +58,30 @@ public class PickupNoteScr : MonoBehaviour
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
             //infoText.SetActive(true);
             notesCanvas.SetActive(true);
+            Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+            Txt.text = "Ron, \n \n Left one of the 2 keys for the Outer Wing in room 56 so that you can grab it later. I've taken the liberty to lock the door just in case. \n \n - Becky";
+            if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+            notesCanvas.SetActive(false);
+            }
+
+
+        }
+
+        if(other.gameObject.tag == "PickUpSecondNote") //on the object you want to pick up set the tag to be anything, in this case "object"
+        {
+
+            canpickup = true;  //set the pick up bool to true
+            ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
+            //infoText.SetActive(true);
+            
+            notesCanvas.SetActive(true);
+            Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+            Txt.text = "Becky, \n \n Wasn't sure where you went. Decided to leave the Outer Wing key in the other room and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+            if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+            notesCanvas.SetActive(false);
+            }
+
+
         }
     }
     private void OnTriggerExit(Collider other)
