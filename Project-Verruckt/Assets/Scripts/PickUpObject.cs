@@ -10,7 +10,7 @@ public class PickUpObject : MonoBehaviour
     public GameObject myHands; //reference to your hands/the position where you want your object to go
     bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
-    bool hasItem; // a bool to see if you have an item in your hand
+    public bool hasItem; // a bool to see if you have an item in your hand
 
     public GameObject pillSound;
     public GameObject pills;
@@ -112,6 +112,7 @@ public class PickUpObject : MonoBehaviour
                 hintSource.SetActive(false);
                 otherObjects.SetActive(false);
                 realObjects.SetActive(true);
+                shadowPerson.SetActive(false);
                 pillsTaken -= 1;
                 isViewing = false;
             }
@@ -145,6 +146,7 @@ public class PickUpObject : MonoBehaviour
             pillsCollected += 1;
             pillSound.SetActive(false);
             pillSound.SetActive(true);
+            hasItem = true;
         }
     }
     private void OnTriggerExit(Collider other)
