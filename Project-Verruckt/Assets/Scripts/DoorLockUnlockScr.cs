@@ -29,7 +29,8 @@ public class DoorLockUnlockScr : MonoBehaviour
             checkKey();
             if (canLeave)
             {
-                SceneManager.LoadScene("HallsStart");
+                //SceneManager.LoadScene("HallsStart");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else
             {

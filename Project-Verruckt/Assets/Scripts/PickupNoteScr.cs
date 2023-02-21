@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PickupNoteScr : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class PickupNoteScr : MonoBehaviour
 
     public Text Txt;
 
+    string sceneName;
+
+    bool pickedSubsequentNote = false;
+    
+
     
 
     public GameObject noteSecondCanvas;
@@ -26,7 +32,8 @@ public class PickupNoteScr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Scene scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
     }
 
     // Update is called once per frame
@@ -58,10 +65,13 @@ public class PickupNoteScr : MonoBehaviour
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
             //infoText.SetActive(true);
             notesCanvas.SetActive(true);
-            Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-            Txt.text = "Ron, \n \n Left one of the 2 keys for the Outer Wing in room 56 so that you can grab it later. I've taken the liberty to lock the door just in case. \n \n - Becky";
+            //if (sceneName != "TestStartScene") {
+            if (pickedSubsequentNote) {
+                Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                Txt.text = "Ron, \n \n I found your key on the floor in the hall, decided to leave it in room 56 so that you can grab it later. I've taken the liberty to lock the door. \n \n - Becky";
+            }
             if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
-            notesCanvas.SetActive(false);
+                notesCanvas.SetActive(false);
             }
 
 
@@ -69,14 +79,14 @@ public class PickupNoteScr : MonoBehaviour
 
         if(other.gameObject.tag == "PickUpSecondNote") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
-
+            pickedSubsequentNote = true;
             canpickup = true;  //set the pick up bool to true
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
             //infoText.SetActive(true);
             
             notesCanvas.SetActive(true);
             Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-            Txt.text = "Becky, \n \n Wasn't sure where you went. Decided to leave the Outer Wing key in the other room and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+            Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
             if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
             notesCanvas.SetActive(false);
             }
