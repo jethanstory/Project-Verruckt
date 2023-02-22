@@ -152,7 +152,6 @@ public class PickUpObject : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         canpickup = false; //when you leave the collider set the canpickup bool to false
-     
     }
     
 }
