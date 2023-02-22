@@ -20,6 +20,6 @@ public class GameOEvents : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("HallsStart"); //SceneManager.LoadScene("Forest");
+        SceneManager.LoadScene("TestStartScene"); //SceneManager.LoadScene("Forest");
     }
 }
