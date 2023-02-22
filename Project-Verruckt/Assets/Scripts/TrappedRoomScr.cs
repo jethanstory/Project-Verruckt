@@ -10,6 +10,8 @@ public class TrappedRoomScr : MonoBehaviour
     public bool canBeStuck = false;
 
     public GameObject fpsPlayer;
+
+    public GameObject loseCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,11 @@ public class TrappedRoomScr : MonoBehaviour
         TrappedRoom();
         if (playerStuck)
         {
-            SceneManager.LoadScene("GameOver");
+            loseCanvas.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            //SceneManager.LoadScene("GameOver");
         }
     }
 
