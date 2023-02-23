@@ -26,10 +26,16 @@ public class PickUpObject : MonoBehaviour
     public float maxTime;
 
     public int pillsTaken;
+    public int totalPillsTaken;
     public int maxPills;
 
     public int pillsCollected;
 
+    public GameObject loseCanvas;
+
+    public int maxPillsAvaliable;
+
+    public GameObject fpsPlayer;
 
     //public Collider sphereColl;
     // Start is called before the first frame update
@@ -86,6 +92,7 @@ public class PickUpObject : MonoBehaviour
 
             pillsCollected -= 1;
             pillsTaken += 1;
+            totalPillsTaken += 1;
             
             // if (notColor == false)
             //     {
@@ -119,6 +126,13 @@ public class PickUpObject : MonoBehaviour
             if (pillsTaken > maxPills)
             {
                 shadowPerson.SetActive(true);
+            }
+            if (totalPillsTaken >= maxPillsAvaliable && !fpsPlayer.GetComponent<PickupKeyScr>().canUnlock && !isViewing)
+            {
+                loseCanvas.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Time.timeScale = 0;
             }
 
         } 
