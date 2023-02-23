@@ -13,6 +13,9 @@ public class PickupKeyScr : MonoBehaviour
     public int maxKeys;
 
     public bool canUnlock;
+    public bool firstKeyCollected;
+    public bool secondKeyCollected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,16 @@ public class PickupKeyScr : MonoBehaviour
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
             keysCollected += 1;
+            firstKeyCollected = true;
+        }
+        
+        if(other.gameObject.tag == "SecondKey") //on the object you want to pick up set the tag to be anything, in this case "object"
+        {
+            canpickup = true;  //set the pick up bool to true
+            ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
+            Destroy(ObjectIwantToDestroy);
+            keysCollected += 1;
+            secondKeyCollected = true;
         }
     }
     private void OnTriggerExit(Collider other)

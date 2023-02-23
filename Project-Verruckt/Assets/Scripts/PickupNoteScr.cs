@@ -70,9 +70,14 @@ public class PickupNoteScr : MonoBehaviour
                 Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
                 Txt.text = "Ron, \n \n I found your key on the floor in the hall, decided to leave it in room 56 so that you can grab it later. I've taken the liberty to lock the door. \n \n - Becky";
             }
-            if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
-                notesCanvas.SetActive(false);
-            }
+            // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+            //     notesCanvas.SetActive(false);
+            // }
+            if (fpsPlayer.GetComponent<PickupKeyScr>().firstKeyCollected) 
+            {
+                Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
+            }            
 
 
         }
@@ -87,9 +92,14 @@ public class PickupNoteScr : MonoBehaviour
             notesCanvas.SetActive(true);
             Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
             Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
-            if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
-            notesCanvas.SetActive(false);
-            }
+            // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+            // notesCanvas.SetActive(false);
+            // }
+            if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) 
+            {
+                Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+            }  
 
 
         }
