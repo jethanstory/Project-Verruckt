@@ -15,7 +15,7 @@ public class CrouchScr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             controller.height = 1.0f;
         }
