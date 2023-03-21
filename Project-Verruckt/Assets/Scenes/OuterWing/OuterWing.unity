@@ -14877,10 +14877,10 @@ MonoBehaviour:
   maxTime: 30
   pillsTaken: 0
   totalPillsTaken: 0
-  maxPills: 9
+  maxPills: 1
   pillsCollected: 0
   loseCanvas: {fileID: 1290319804}
-  maxPillsAvaliable: 0
+  maxPillsAvaliable: 9
   fpsPlayer: {fileID: 1161026791}
 --- !u!114 &1161026801
 MonoBehaviour:
@@ -14923,7 +14923,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161026791}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afa4c651aa5a9fb49af5e5c6ce40d8c9, type: 3}
   m_Name: 
