@@ -36,6 +36,19 @@ public class PickUpObject : MonoBehaviour
     public int maxPillsAvaliable;
 
     public GameObject fpsPlayer;
+    public GameObject clockHand;
+
+    public Transform spawnPoint;
+    
+    GameObject clockInstance;
+    public bool pullClockOut;
+    public bool putClockAway;
+
+    public float speed = 1.0f;
+
+    // The target (cylinder) position.
+    public Transform handTarget;
+    public Transform pocketTarget;
 
     //public Collider sphereColl;
     // Start is called before the first frame update
@@ -45,7 +58,6 @@ public class PickUpObject : MonoBehaviour
         hasItem = false;
 
         pillSound.SetActive(false);
-
         //sphereColl = GetComponent<Collider>();
     }
     
@@ -81,6 +93,34 @@ public class PickUpObject : MonoBehaviour
                 
         //     //}
         // }
+        
+        if (pullClockOut)
+        {
+            var step =  speed * Time.deltaTime; // calculate distance to move
+            clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, handTarget.position, step);
+
+            // Check if the position of the cube and sphere are approximately equal.
+            if (Vector3.Distance(clockHand.transform.position, handTarget.position) < 0.0001f)//< 0.001f)
+            {
+                // Swap the position of the cylinder.
+                pullClockOut = false;
+            }
+        }
+
+        if (putClockAway)
+        {
+            var step =  speed * Time.deltaTime; // calculate distance to move
+            clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, pocketTarget.position, step);
+
+            // Check if the position of the cube and sphere are approximately equal.
+            if (Vector3.Distance(clockHand.transform.position, pocketTarget.position) < 0.0001f)//< 0.001f)
+            {
+                // Swap the position of the cylinder.
+                putClockAway = false;
+                clockHand.SetActive(false);
+            }
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
         {
@@ -89,6 +129,9 @@ public class PickUpObject : MonoBehaviour
             hintSource.SetActive(true);
             otherObjects.SetActive(true);
             realObjects.SetActive(false);
+            clockHand.SetActive(true);
+            //clockInstance = Instantiate(clockHand, spawnPoint.position, spawnPoint.rotation);
+            pullClockOut = true;
 
             pillsCollected -= 1;
             pillsTaken += 1;
@@ -122,6 +165,9 @@ public class PickUpObject : MonoBehaviour
                 shadowPerson.SetActive(false);
                 pillsTaken -= 1;
                 isViewing = false;
+                putClockAway = true;
+                //clockHand.SetActive(false);
+                //Destroy(clockInstance);
             }
             if (pillsTaken > maxPills)
             {
