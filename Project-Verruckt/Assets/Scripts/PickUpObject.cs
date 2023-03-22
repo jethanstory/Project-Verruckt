@@ -137,6 +137,7 @@ public class PickUpObject : MonoBehaviour
             pillsTaken += 1;
             totalPillsTaken += 1;
             
+            fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
             // if (notColor == false)
             //     {
                     
