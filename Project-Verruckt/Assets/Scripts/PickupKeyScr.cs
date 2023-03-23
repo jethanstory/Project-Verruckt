@@ -28,8 +28,7 @@ public class PickupKeyScr : MonoBehaviour
         if(canpickup == true) // if you enter thecollider of the objecct
         {
             
-            keySound.SetActive(false);
-            keySound.SetActive(true);
+            
         }
         if (keysCollected >= maxKeys)
         {
@@ -47,6 +46,8 @@ public class PickupKeyScr : MonoBehaviour
             Destroy(ObjectIwantToDestroy);
             keysCollected += 1;
             firstKeyCollected = true;
+            keySound.SetActive(false);
+            keySound.SetActive(true);
         }
         
         if(other.gameObject.tag == "SecondKey") //on the object you want to pick up set the tag to be anything, in this case "object"
@@ -56,6 +57,8 @@ public class PickupKeyScr : MonoBehaviour
             Destroy(ObjectIwantToDestroy);
             keysCollected += 1;
             secondKeyCollected = true;
+            keySound.SetActive(false);
+            keySound.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)

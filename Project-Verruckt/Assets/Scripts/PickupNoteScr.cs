@@ -76,7 +76,9 @@ public class PickupNoteScr : MonoBehaviour
             if (fpsPlayer.GetComponent<PickupKeyScr>().firstKeyCollected) 
             {
                 Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-                Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
+                if (sceneName == "HallsStart") {
+                    Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
+                }
             }            
 
 
