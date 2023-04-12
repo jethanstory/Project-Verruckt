@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class DoorLockUnlockScr : MonoBehaviour
 {
     public GameObject doorLockedSound;
+    public GameObject doorStuckSound;
 
     public GameObject fpsPlayer;
     public bool canLeave = false;
+
+    public int doorStuckCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +37,20 @@ public class DoorLockUnlockScr : MonoBehaviour
             }
             else
             {
-                doorLockedSound.SetActive(false);
-                doorLockedSound.SetActive(true);
+                doorStuckCount++;
+
+                if (doorStuckCount > 5)
+                {
+                    doorStuckSound.SetActive(false);
+                    doorStuckSound.SetActive(true);
+                    doorStuckCount = 0;
+                }
+                else
+                {
+                    doorLockedSound.SetActive(false);
+                    doorLockedSound.SetActive(true);
+                }
+                
             }
             
         }
