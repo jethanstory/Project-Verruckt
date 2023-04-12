@@ -38,7 +38,8 @@ public class PickupFlashlightScr : MonoBehaviour
             Destroy(ObjectIwantToDestroy);
             flashLightCollected = true;
             //flashLightSource.SetActive(false);
-            GameObject.Find("playerBody").GetComponent<ThrowingObject>().enabled = true;
+            // GameObject.Find("playerBody").GetComponent<ThrowingObject>().enabled = true;
+            GameObject.Find("First Person Player").GetComponent<FlashLightMech>().enabled = true;
             flashLightPlayer.SetActive(true);
         }
     }
