@@ -23,7 +23,7 @@ public class RoomDoorScr : MonoBehaviour
     {
         if(other.gameObject.tag == "RoomDoor") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
-            if (doorStuckCount > 5)
+            if (doorStuckCount > 10)
             {
                 doorStuckSound.SetActive(false);
                 doorStuckSound.SetActive(true);
