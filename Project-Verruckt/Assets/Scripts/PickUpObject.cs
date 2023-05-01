@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.Rendering.PostProcessing;
+
 using UnityEngine.SceneManagement;
 
  
@@ -44,6 +46,8 @@ public class PickUpObject : MonoBehaviour
     public bool pullClockOut;
     public bool putClockAway;
 
+    public PostProcessVolume _postProcessVolume;
+
     public float speed = 1.0f;
 
     // The target (cylinder) position.
@@ -56,7 +60,7 @@ public class PickUpObject : MonoBehaviour
     {
         canpickup = false;    //setting both to false
         hasItem = false;
-
+        //_postProcessVolume.weight = 0;
         pillSound.SetActive(false);
         //sphereColl = GetComponent<Collider>();
     }
@@ -156,6 +160,9 @@ public class PickUpObject : MonoBehaviour
         if (isViewing)
         {
             pillTime += Time.deltaTime;
+            // if (_postProcessVolume.weight < 1)
+            //     _postProcessVolume.weight = pillTime;
+            //_postProcessVolume.weight = 1;
 
             if (pillTime >= maxTime)
             {
@@ -185,6 +192,7 @@ public class PickUpObject : MonoBehaviour
         } 
         else
         {
+            //_postProcessVolume.weight = 0;
             pillTime = 0;
             //pillSound.SetActive(false);
         }

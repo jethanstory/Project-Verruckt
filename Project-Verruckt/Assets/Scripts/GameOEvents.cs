@@ -20,7 +20,8 @@ public class GameOEvents : MonoBehaviour
 
     public void StartGame() 
     {
-        SceneManager.LoadScene("TestStartScene"); //SceneManager.LoadScene("Forest"); 
+        //SceneManager.LoadScene("TestStartScene"); //SceneManager.LoadScene("Forest"); 
+        SceneManager.LoadScene("GameIntroTextScene"); //SceneManager.LoadScene("Forest"); 
     }
 
     public void MenuScene() 

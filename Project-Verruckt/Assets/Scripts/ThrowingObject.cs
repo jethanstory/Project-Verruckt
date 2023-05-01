@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+
 
 //this script is used for throwing the grenade and destrouing it after some delay
 
 public class ThrowingObject : MonoBehaviour
 
 {
+    
 
     public Transform spawnPoint;
     public GameObject flare;
@@ -44,6 +47,7 @@ public class ThrowingObject : MonoBehaviour
         //light = GetComponent<Light> ();
         //light2 = GetComponent<Light> ();
         //light3 = GetComponent<Light> ();
+        // _postProcessVolume.profile.TryGetSettings(out _weight);
         canThrow = true;
     }
 
