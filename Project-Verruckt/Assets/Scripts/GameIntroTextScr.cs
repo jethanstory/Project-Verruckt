@@ -60,7 +60,8 @@ public class GameIntroTextScr : MonoBehaviour
                                 if (startTime > 49)
                                 {
                                     introText7.SetActive(true);
-                                    SceneManager.LoadScene("TestStartScene");
+                                    //SceneManager.LoadScene("TestStartScene");
+                                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                                     checkEnd = true;
                                 }
                             }
@@ -73,6 +74,13 @@ public class GameIntroTextScr : MonoBehaviour
         {
             startTime = 0f;
             checkEnd = false;
+        }
+
+        if (Input.anyKey)
+        {
+            introText7.SetActive(true);
+            //SceneManager.LoadScene("TestStartScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
