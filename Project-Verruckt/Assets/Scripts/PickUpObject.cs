@@ -46,6 +46,8 @@ public class PickUpObject : MonoBehaviour
     public bool pullClockOut;
     public bool putClockAway;
 
+    public bool pickedUpClock;
+
     public PostProcessVolume _postProcessVolume;
 
     public float speed = 1.0f;
@@ -141,7 +143,8 @@ public class PickUpObject : MonoBehaviour
             pillsTaken += 1;
             totalPillsTaken += 1;
             
-            fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
+            //fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
+            fpsPlayer.GetComponent<PickupNoteAdvScr>().notesCanvas.SetActive(false);
             // if (notColor == false)
             //     {
                     
@@ -180,6 +183,7 @@ public class PickUpObject : MonoBehaviour
             if (pillsTaken > maxPills)
             {
                 shadowPerson.SetActive(true);
+                pillTime += 30;
             }
             if (totalPillsTaken >= maxPillsAvaliable && !fpsPlayer.GetComponent<PickupKeyScr>().canUnlock && !isViewing)
             {
