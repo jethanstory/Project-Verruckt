@@ -79,6 +79,12 @@ public class GameIntroTextScr : MonoBehaviour
         if (Input.anyKey)
         {
             introText7.SetActive(true);
+            introText6.SetActive(false);
+            introText5.SetActive(false);
+            introText4.SetActive(false);
+            introText3.SetActive(false);
+            introText2.SetActive(false);
+            introText.SetActive(false);
             //SceneManager.LoadScene("TestStartScene");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
