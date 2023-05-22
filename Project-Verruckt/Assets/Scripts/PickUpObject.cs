@@ -29,7 +29,7 @@ public class PickUpObject : MonoBehaviour
 
     public int pillsTaken;
     public int totalPillsTaken;
-    public int maxPills;
+    public int maxPillsCanTake;
 
     public int pillsCollected;
 
@@ -45,6 +45,8 @@ public class PickUpObject : MonoBehaviour
     GameObject clockInstance;
     public bool pullClockOut;
     public bool putClockAway;
+
+    public GameObject cinematicSound;
 
     public bool pickedUpClock;
 
@@ -166,6 +168,7 @@ public class PickUpObject : MonoBehaviour
             otherObjects.SetActive(true);
             realObjects.SetActive(false);
             clockHand.SetActive(true);
+            cinematicSound.SetActive(true);
             //clockInstance = Instantiate(clockHand, spawnPoint.position, spawnPoint.rotation);
             pullClockOut = true;
 
@@ -199,6 +202,7 @@ public class PickUpObject : MonoBehaviour
 
             if (pillTime >= maxTime)
             {
+                cinematicSound.SetActive(false);
                 viewSource.SetActive(false); //viewSource.SetActive(true);
                 hintSource.SetActive(false);
                 otherObjects.SetActive(false);
@@ -207,10 +211,11 @@ public class PickUpObject : MonoBehaviour
                 pillsTaken -= 1;
                 isViewing = false;
                 putClockAway = true;
+                
                 //clockHand.SetActive(false);
                 //Destroy(clockInstance);
             }
-            if (pillsTaken > maxPills)
+            if (pillsTaken > maxPillsCanTake)
             {
                 shadowPerson.SetActive(true);
                 pillTime += 30;
