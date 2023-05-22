@@ -17,6 +17,7 @@ public class PickupNoteAdvScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public Text Txt;
+    public int numKeys;
 
     string sceneName;
 
@@ -83,10 +84,10 @@ public class PickupNoteAdvScr : MonoBehaviour
             // }
             if (fpsPlayer.GetComponent<PickupKeyScr>().firstKeyCollected) 
             {
-                // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-                // if (sceneName == "HallsStart") {
-                //     Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
-                // }
+                Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                if (sceneName == "HallsStart") {
+                    Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
+                }
             }            
 
 
@@ -100,7 +101,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             //infoText.SetActive(true);
             
             noteSecondCanvas.SetActive(true);
-            Txt = GameObject.Find ("SecondNoteText").GetComponent<Text> ();
+            //Txt = GameObject.Find ("SecondNoteText").GetComponent<Text> ();
             // if (sceneName == "HallsStart") {
             //     Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
             // }
@@ -114,39 +115,68 @@ public class PickupNoteAdvScr : MonoBehaviour
             // }
             if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) 
             {
-                // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-                // Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+                Txt = GameObject.Find ("SecondNoteText").GetComponent<Text> ();
+                Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
             }  
 
 
         }
 
-        if(other.gameObject.tag == "PickUpThirdNote") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (numKeys >= 3)
         {
-            canpickup = true;  //set the pick up bool to true
-            ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
-            //infoText.SetActive(true);
-            
-            noteThirdCanvas.SetActive(true);
-            Txt = GameObject.Find ("ThirdNoteText").GetComponent<Text> ();
-            // if (sceneName == "HallsStart") {
-            //     Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
-            // }
-
-            // if (sceneName == "ReceptionTestStartScene") {
-            //     Txt.text = "Jake, \n \n Please don't leave the ward key laying around in the filing closet. Return it to me when you're done with it. \n \n - Sal"; //+ Strength.ToString ();
-            // }
-            // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
-            // notesCanvas.SetActive(false);
-            // }
-            if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) 
+            if(other.gameObject.tag == "PickUpThirdNote") //on the object you want to pick up set the tag to be anything, in this case "object"
             {
-                // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-                // Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
-            }  
+                canpickup = true;  //set the pick up bool to true
+                ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
+                //infoText.SetActive(true);
+            
+                noteThirdCanvas.SetActive(true);
+                Txt = GameObject.Find ("ThirdNoteText").GetComponent<Text> ();
+                // if (sceneName == "HallsStart") {
+                //     Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+                // }
+
+                // if (sceneName == "ReceptionTestStartScene") {
+                //     Txt.text = "Jake, \n \n Please don't leave the ward key laying around in the filing closet. Return it to me when you're done with it. \n \n - Sal"; //+ Strength.ToString ();
+                // }
+                // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+                // notesCanvas.SetActive(false);
+                // }
+                if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) 
+                {
+                    // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                    // Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+                }  
 
 
+            }
         }
+        // if(other.gameObject.tag == "PickUpThirdNote") //on the object you want to pick up set the tag to be anything, in this case "object"
+        // {
+        //     canpickup = true;  //set the pick up bool to true
+        //     ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
+        //     //infoText.SetActive(true);
+            
+        //     noteThirdCanvas.SetActive(true);
+        //     Txt = GameObject.Find ("ThirdNoteText").GetComponent<Text> ();
+        //     // if (sceneName == "HallsStart") {
+        //     //     Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+        //     // }
+
+        //     // if (sceneName == "ReceptionTestStartScene") {
+        //     //     Txt.text = "Jake, \n \n Please don't leave the ward key laying around in the filing closet. Return it to me when you're done with it. \n \n - Sal"; //+ Strength.ToString ();
+        //     // }
+        //     // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+        //     // notesCanvas.SetActive(false);
+        //     // }
+        //     if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) 
+        //     {
+        //         // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+        //         // Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+        //     }  
+
+
+        // }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -154,7 +184,11 @@ public class PickupNoteAdvScr : MonoBehaviour
         //infoText.SetActive(false);
         notesCanvas.SetActive(false);
         noteSecondCanvas.SetActive(false);
-        noteThirdCanvas.SetActive(false);
+
+        if (numKeys >= 3)
+        {
+            noteThirdCanvas.SetActive(false);
+        }
      
     }
 
