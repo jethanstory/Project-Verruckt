@@ -17,7 +17,7 @@ public class PickupNoteAdvScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public Text Txt;
-    public int numKeys;
+    public int numNotes;
 
     string sceneName;
 
@@ -122,7 +122,7 @@ public class PickupNoteAdvScr : MonoBehaviour
 
         }
 
-        if (numKeys >= 3)
+        if (numNotes >= 3)
         {
             if(other.gameObject.tag == "PickUpThirdNote") //on the object you want to pick up set the tag to be anything, in this case "object"
             {
@@ -185,7 +185,7 @@ public class PickupNoteAdvScr : MonoBehaviour
         notesCanvas.SetActive(false);
         noteSecondCanvas.SetActive(false);
 
-        if (numKeys >= 3)
+        if (numNotes >= 3)
         {
             noteThirdCanvas.SetActive(false);
         }
