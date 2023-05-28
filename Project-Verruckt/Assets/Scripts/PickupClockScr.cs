@@ -9,6 +9,7 @@ public class PickupClockScr : MonoBehaviour
     public bool hasClock;
     string sceneName;
     GameObject ObjectIwantToDestroy;
+    public GameObject objectCheck;
 
 
     // Start is called before the first frame update
@@ -17,16 +18,22 @@ public class PickupClockScr : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         sceneName = scene.name;
 
-        if (sceneName == "ReceptionTestStartScene")
-        {
-            hasClock = false;
-        }
+        // if (sceneName == "ReceptionTestStartScene")
+        // {
+        //     hasClock = false;
+        // }
+        // if (objectCheck.GetComponent<PickupClockScr>().hasClock)
+        // {
+        //     hasClock = true;
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasClock)
+        //if (hasClock)
+        //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock)
         {
             GameObject.Find("First Person Player").GetComponent<ClockTickScr>().enabled = true;
         }
@@ -38,7 +45,9 @@ public class PickupClockScr : MonoBehaviour
         {
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
-            hasClock = true;
+            // objectCheck.GetComponent<PlayerClockCheck>().hasClock = true;
+            GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock = true;
+            //hasClock = true;
         }
     }
 }

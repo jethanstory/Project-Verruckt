@@ -38,6 +38,7 @@ public class PickUpObject : MonoBehaviour
     public int maxPillsAvaliable;
 
     public GameObject fpsPlayer;
+    public GameObject objectCheck;
     public GameObject clockHand;
 
     public Transform spawnPoint;
@@ -102,7 +103,9 @@ public class PickUpObject : MonoBehaviour
         //     //}
         // }
 
-        if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
+        //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
+        //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock)
         {
             if (pullClockOut)
             {
