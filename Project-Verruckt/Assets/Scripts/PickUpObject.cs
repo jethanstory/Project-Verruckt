@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class PickUpObject : MonoBehaviour
 {
     public GameObject myHands; //reference to your hands/the position where you want your object to go
-    bool canpickup; //a bool to see if you can or cant pick up the item
+    //bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
     public bool hasItem; // a bool to see if you have an item in your hand
 
@@ -38,7 +38,7 @@ public class PickUpObject : MonoBehaviour
     public int maxPillsAvaliable;
 
     public GameObject fpsPlayer;
-    public GameObject objectCheck;
+    //public GameObject objectCheck;
     public GameObject clockHand;
 
     public Transform spawnPoint;
@@ -63,7 +63,7 @@ public class PickUpObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canpickup = false;    //setting both to false
+        //canpickup = false;    //setting both to false
         hasItem = false;
         //_postProcessVolume.weight = 0;
         pillSound.SetActive(false);
@@ -105,7 +105,7 @@ public class PickUpObject : MonoBehaviour
 
         //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
         //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
-        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock)
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock || GameObject.Find("ClockCheckObjectTemp").GetComponent<PlayerClockCheck>().hasClock)
         {
             if (pullClockOut)
             {
@@ -262,7 +262,7 @@ public class PickUpObject : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        canpickup = false; //when you leave the collider set the canpickup bool to false
+        //canpickup = false; //when you leave the collider set the canpickup bool to false
     }
     
 }
