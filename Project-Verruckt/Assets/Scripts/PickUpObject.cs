@@ -105,7 +105,7 @@ public class PickUpObject : MonoBehaviour
 
         //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
         //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
-        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock || GameObject.Find("ClockCheckObjectTemp").GetComponent<PlayerClockCheck>().hasClock)
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock) // || GameObject.Find("ClockCheckObjectTemp").GetComponent<PlayerClockCheck>().hasClock)
         {
             if (pullClockOut)
             {
