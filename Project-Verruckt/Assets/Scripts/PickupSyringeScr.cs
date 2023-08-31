@@ -32,6 +32,8 @@ public class PickupSyringeScr : MonoBehaviour
             syringeCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
+            textDisplay.SetActive(true);
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -40,23 +42,23 @@ public class PickupSyringeScr : MonoBehaviour
         textDisplay.SetActive(false);
     }
 
-    public void syringeText()
-    {
-        if (syringeCollected){
+    // public void syringeText()
+    // {
+    //     if (syringeCollected){
 
-            secondsCount += Time.deltaTime;
-            textDisplay.SetActive(true);
+    //         secondsCount += Time.deltaTime;
+    //         textDisplay.SetActive(true);
 
-            if (secondsCount > 2) 
-            {
-                textDisplay.SetActive(false);
-                // textGoal.SetActive(true);
-                // if (secondsCount > 10)
-                // {
-                //     textGoal.SetActive(false);
-                // }
-            }
-            secondsCount = 0;
-        }
-    }
+    //         if (secondsCount > 2) 
+    //         {
+    //             textDisplay.SetActive(false);
+    //             // textGoal.SetActive(true);
+    //             // if (secondsCount > 10)
+    //             // {
+    //             //     textGoal.SetActive(false);
+    //             // }
+    //         }
+    //         secondsCount = 0;
+    //     }
+    // }
 }
