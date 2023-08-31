@@ -19,7 +19,7 @@ public class PickupSyringeScr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        syringeText();
+        //syringeText();
     }
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
@@ -32,7 +32,7 @@ public class PickupSyringeScr : MonoBehaviour
             syringeCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
-            textDisplay.SetActive(true);
+            //syringeText();
 
         }
     }
@@ -41,24 +41,4 @@ public class PickupSyringeScr : MonoBehaviour
         //canpickup = false; //when you leave the collider set the canpickup bool to false
         textDisplay.SetActive(false);
     }
-
-    // public void syringeText()
-    // {
-    //     if (syringeCollected){
-
-    //         secondsCount += Time.deltaTime;
-    //         textDisplay.SetActive(true);
-
-    //         if (secondsCount > 2) 
-    //         {
-    //             textDisplay.SetActive(false);
-    //             // textGoal.SetActive(true);
-    //             // if (secondsCount > 10)
-    //             // {
-    //             //     textGoal.SetActive(false);
-    //             // }
-    //         }
-    //         secondsCount = 0;
-    //     }
-    // }
 }

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillTextScr : MonoBehaviour
+public class SyringeTextScr : MonoBehaviour
 {
-    float secondsCount = 0;
-    
-    public GameObject textControls;
-    public GameObject textGoal;
-
+    public GameObject textDisplay;
     public GameObject fpsPlayer;
+
+    //bool endTime;
+    public float secondsCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,26 +18,31 @@ public class PillTextScr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkPills();
+        syringeText();
     }
 
-    void checkPills() {
-        if (fpsPlayer.GetComponent<PickUpObject>().hasItem) {
 
+    public void syringeText()
+    {
+        if (fpsPlayer.GetComponent<PickupSyringeScr>().syringeCollected){
+            //secondsCount = 0;
             secondsCount += Time.deltaTime;
-            textControls.SetActive(true);
+            textDisplay.SetActive(true);
 
-            if (secondsCount > 5) 
+            if (secondsCount > 2) 
             {
-                textControls.SetActive(false);
+                textDisplay.SetActive(false);
+                //endTime = true;
+                secondsCount = 100;
                 // textGoal.SetActive(true);
                 // if (secondsCount > 10)
                 // {
                 //     textGoal.SetActive(false);
                 // }
             }
-        } 
+            
+        }
+        
     }
-
     
 }

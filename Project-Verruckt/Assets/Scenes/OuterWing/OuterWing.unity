@@ -55776,6 +55776,7 @@ GameObject:
   - component: {fileID: 1161026810}
   - component: {fileID: 1161026811}
   - component: {fileID: 1161026792}
+  - component: {fileID: 1161026812}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Untagged
@@ -56150,6 +56151,20 @@ MonoBehaviour:
   buzzer: {fileID: 1477250069}
   crouchJumpText: {fileID: 2111325755}
   crouchJumpTrigger: {fileID: 275698823}
+--- !u!114 &1161026812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161026791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8726c6e991f5d46a38745c612947bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 1143807674}
+  fpsPlayer: {fileID: 1161026791}
 --- !u!1 &1163617804
 GameObject:
   m_ObjectHideFlags: 0
