@@ -13,6 +13,7 @@ public class GameIntroTextScr : MonoBehaviour
     public GameObject introText5;
     public GameObject introText6;
     public GameObject introText7;
+    public GameObject introText8;
     //public GameObject loadingText;
     public bool checkEnd;
 
@@ -60,7 +61,8 @@ public class GameIntroTextScr : MonoBehaviour
                                 if (startTime > 49)
                                 {
                                     introText7.SetActive(true);
-                                    SceneManager.LoadScene("TestStartScene");
+                                    //SceneManager.LoadScene("TestStartScene");
+                                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                                     checkEnd = true;
                                 }
                             }
@@ -73,6 +75,20 @@ public class GameIntroTextScr : MonoBehaviour
         {
             startTime = 0f;
             checkEnd = false;
+        }
+
+        if (Input.anyKey)
+        {
+            introText7.SetActive(false);
+            introText6.SetActive(false);
+            introText5.SetActive(false);
+            introText4.SetActive(false);
+            introText3.SetActive(false);
+            introText2.SetActive(false);
+            introText.SetActive(false);
+            introText8.SetActive(true);
+            //SceneManager.LoadScene("TestStartScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

@@ -67,8 +67,15 @@ public class PickupNoteScr : MonoBehaviour
             notesCanvas.SetActive(true);
             //if (sceneName != "TestStartScene") {
             if (pickedSubsequentNote) {
-                Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-                Txt.text = "Ron, \n \n I found your key on the floor in the hall, decided to leave it in room 56 so that you can grab it later. I've taken the liberty to lock the door. \n \n - Becky";
+                if (sceneName == "HallsStart") {
+                    Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
+                    Txt.text = "Ron, \n \n I found your key on the floor in the hall, decided to leave it in room 56 so that you can grab it later. I've taken the liberty to lock the door. \n \n - Becky";
+                }
+
+                if (sceneName == "ReceptionTestStartScene") {
+                    //Txt.text = "CLASSIFIED \n \n Temporal Environmental Adjustment Medication (T.E.A.M) PROGRAM STATUS \n \n SUMMARY: \n \n  It has been concluded that least 200 MG of *REDACTED* Sulfide is required to induce the temporal effects needed to shift the subjects into the temporal realm. For research purposes the *REDACTED* Sulfide was administered via oral ingestion in 10 MG and 25MG capsules. Approximately 13 deaths occured as a result of these studies and a further 15 subjects have slipped into a state of being that is locally refered to as the 'shadow realm'. Research on this phenomenon is still ongoing.";
+                    Txt.text = "PROGRAM REFERENCE NOTE TO HR: \n \n DECLASSIFED ELEMENTS \n \n SUMMARY: \n \n It has been concluded that it would be benefical for HR purposes to declassify a small portion of the nature of the *REDACTED* program. HR Personel may now make reference to an 'experimental medication program involving puzzle solving and cognitive thought' when referring to the *REDACTED* project to any personel without security clearance or outside civilians. No further information will be revealed.";
+                }
             }
             // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
             //     notesCanvas.SetActive(false);
@@ -93,7 +100,13 @@ public class PickupNoteScr : MonoBehaviour
             
             notesCanvas.SetActive(true);
             Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
-            Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+            if (sceneName == "HallsStart") {
+                Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
+            }
+
+            if (sceneName == "ReceptionTestStartScene") {
+                Txt.text = "Jake, \n \n Please don't leave the ward key laying around in the filing closet. Return it to me when you're done with it. \n \n - Sal"; //+ Strength.ToString ();
+            }
             // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
             // notesCanvas.SetActive(false);
             // }

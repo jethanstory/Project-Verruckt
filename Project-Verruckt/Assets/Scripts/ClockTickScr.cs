@@ -11,7 +11,6 @@ public class ClockTickScr : MonoBehaviour
     public GameObject clockRun;
     public GameObject clockRunFast;
     public GameObject clockEnd;
-    public GameObject cinematicSound;
 
     public GameObject fpsPlayer;
 
@@ -32,7 +31,6 @@ public class ClockTickScr : MonoBehaviour
 
             secondsCount += Time.deltaTime;
             clockStart.SetActive(true);
-            cinematicSound.SetActive(true);
 
             if (secondsCount > 0.5) 
             {
@@ -53,7 +51,6 @@ public class ClockTickScr : MonoBehaviour
         }
         else
         {
-            cinematicSound.SetActive(false);
             clockRunFast.SetActive(false);
             secondsCount = 0;
         } 

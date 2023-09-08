@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class PickUpObject : MonoBehaviour
 {
     public GameObject myHands; //reference to your hands/the position where you want your object to go
-    bool canpickup; //a bool to see if you can or cant pick up the item
+    //bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
     public bool hasItem; // a bool to see if you have an item in your hand
 
@@ -29,7 +29,7 @@ public class PickUpObject : MonoBehaviour
 
     public int pillsTaken;
     public int totalPillsTaken;
-    public int maxPills;
+    public int maxPillsCanTake;
 
     public int pillsCollected;
 
@@ -38,6 +38,7 @@ public class PickUpObject : MonoBehaviour
     public int maxPillsAvaliable;
 
     public GameObject fpsPlayer;
+    //public GameObject objectCheck;
     public GameObject clockHand;
 
     public Transform spawnPoint;
@@ -45,6 +46,10 @@ public class PickUpObject : MonoBehaviour
     GameObject clockInstance;
     public bool pullClockOut;
     public bool putClockAway;
+
+    public GameObject cinematicSound;
+
+    public bool pickedUpClock;
 
     public PostProcessVolume _postProcessVolume;
 
@@ -58,7 +63,7 @@ public class PickUpObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canpickup = false;    //setting both to false
+        //canpickup = false;    //setting both to false
         hasItem = false;
         //_postProcessVolume.weight = 0;
         pillSound.SetActive(false);
@@ -97,33 +102,65 @@ public class PickUpObject : MonoBehaviour
                 
         //     //}
         // }
-        
-        if (pullClockOut)
+
+        //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
+        //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock) // || GameObject.Find("ClockCheckObjectTemp").GetComponent<PlayerClockCheck>().hasClock)
         {
-            var step =  speed * Time.deltaTime; // calculate distance to move
-            clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, handTarget.position, step);
+            if (pullClockOut)
+            {
+                var step =  speed * Time.deltaTime; // calculate distance to move
+                clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, handTarget.position, step);
 
             // Check if the position of the cube and sphere are approximately equal.
-            if (Vector3.Distance(clockHand.transform.position, handTarget.position) < 0.0001f)//< 0.001f)
-            {
+                if (Vector3.Distance(clockHand.transform.position, handTarget.position) < 0.0001f)//< 0.001f)
+                {
                 // Swap the position of the cylinder.
-                pullClockOut = false;
+                    pullClockOut = false;
+                }
             }
-        }
 
-        if (putClockAway)
-        {
-            var step =  speed * Time.deltaTime; // calculate distance to move
-            clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, pocketTarget.position, step);
-
-            // Check if the position of the cube and sphere are approximately equal.
-            if (Vector3.Distance(clockHand.transform.position, pocketTarget.position) < 0.0001f)//< 0.001f)
+            if (putClockAway)
             {
+                var step =  speed * Time.deltaTime; // calculate distance to move
+                clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, pocketTarget.position, step);
+
+                // Check if the position of the cube and sphere are approximately equal.
+                if (Vector3.Distance(clockHand.transform.position, pocketTarget.position) < 0.0001f)//< 0.001f)
+                {
                 // Swap the position of the cylinder.
                 putClockAway = false;
                 clockHand.SetActive(false);
+                }
             }
         }
+        
+        // if (pullClockOut)
+        // {
+        //     var step =  speed * Time.deltaTime; // calculate distance to move
+        //     clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, handTarget.position, step);
+
+        //     // Check if the position of the cube and sphere are approximately equal.
+        //     if (Vector3.Distance(clockHand.transform.position, handTarget.position) < 0.0001f)//< 0.001f)
+        //     {
+        //         // Swap the position of the cylinder.
+        //         pullClockOut = false;
+        //     }
+        // }
+
+        // if (putClockAway)
+        // {
+        //     var step =  speed * Time.deltaTime; // calculate distance to move
+        //     clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, pocketTarget.position, step);
+
+        //     // Check if the position of the cube and sphere are approximately equal.
+        //     if (Vector3.Distance(clockHand.transform.position, pocketTarget.position) < 0.0001f)//< 0.001f)
+        //     {
+        //         // Swap the position of the cylinder.
+        //         putClockAway = false;
+        //         clockHand.SetActive(false);
+        //     }
+        // }
         
 
         if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
@@ -134,6 +171,7 @@ public class PickUpObject : MonoBehaviour
             otherObjects.SetActive(true);
             realObjects.SetActive(false);
             clockHand.SetActive(true);
+            cinematicSound.SetActive(true);
             //clockInstance = Instantiate(clockHand, spawnPoint.position, spawnPoint.rotation);
             pullClockOut = true;
 
@@ -141,7 +179,8 @@ public class PickUpObject : MonoBehaviour
             pillsTaken += 1;
             totalPillsTaken += 1;
             
-            fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
+            //fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
+            fpsPlayer.GetComponent<PickupNoteAdvScr>().notesCanvas.SetActive(false);
             // if (notColor == false)
             //     {
                     
@@ -166,6 +205,7 @@ public class PickUpObject : MonoBehaviour
 
             if (pillTime >= maxTime)
             {
+                cinematicSound.SetActive(false);
                 viewSource.SetActive(false); //viewSource.SetActive(true);
                 hintSource.SetActive(false);
                 otherObjects.SetActive(false);
@@ -174,12 +214,14 @@ public class PickUpObject : MonoBehaviour
                 pillsTaken -= 1;
                 isViewing = false;
                 putClockAway = true;
+                
                 //clockHand.SetActive(false);
                 //Destroy(clockInstance);
             }
-            if (pillsTaken > maxPills)
+            if (pillsTaken > maxPillsCanTake)
             {
                 shadowPerson.SetActive(true);
+                pillTime += 30;
             }
             if (totalPillsTaken >= maxPillsAvaliable && !fpsPlayer.GetComponent<PickupKeyScr>().canUnlock && !isViewing)
             {
@@ -220,7 +262,7 @@ public class PickUpObject : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        canpickup = false; //when you leave the collider set the canpickup bool to false
+        //canpickup = false; //when you leave the collider set the canpickup bool to false
     }
     
 }
