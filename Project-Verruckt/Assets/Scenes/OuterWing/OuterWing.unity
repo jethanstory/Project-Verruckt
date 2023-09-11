@@ -55932,6 +55932,7 @@ MonoBehaviour:
   notColor: 0
   canPill: 0
   isViewing: 0
+  doublePilled: 0
   pillTime: 0
   maxTime: 30
   pillsTaken: 0
@@ -56113,6 +56114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasClock: 1
   objectCheck: {fileID: 0}
+  pickupClockSound: {fileID: 0}
 --- !u!114 &1161026810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56165,6 +56167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 1143807674}
   fpsPlayer: {fileID: 1161026791}
+  secondsCount: 0
 --- !u!1 &1163617804
 GameObject:
   m_ObjectHideFlags: 0
@@ -58204,6 +58207,7 @@ MonoBehaviour:
   notColor: 0
   canPill: 0
   isViewing: 0
+  doublePilled: 0
   pillTime: 0
   maxTime: 30
   pillsTaken: 0
