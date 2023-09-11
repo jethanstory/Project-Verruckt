@@ -23,8 +23,8 @@ public class ClockTextScr : MonoBehaviour
     }
 
     void checkClock() {
-        if (fpsPlayer.GetComponent<PickupClockScr>().hasClock) {
-
+        //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock) {
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock) {
             secondsCount += Time.deltaTime;
             textControls.SetActive(true);
 

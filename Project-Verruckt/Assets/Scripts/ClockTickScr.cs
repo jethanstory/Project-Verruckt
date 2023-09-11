@@ -36,11 +36,37 @@ public class ClockTickScr : MonoBehaviour
             {
                 clockStart.SetActive(false);
                 clockRun.SetActive(true);
-                if (secondsCount >= 20)
+                if (secondsCount >= 20 && !fpsPlayer.GetComponent<PickUpObject>().doublePilled) 
                 {
                     clockRun.SetActive(false);
                     clockRunFast.SetActive(true);
-                    if (secondsCount >= 28)
+                    if (secondsCount >= 28 && !fpsPlayer.GetComponent<PickUpObject>().doublePilled)
+                    {
+                        clockEnd.SetActive(false);
+                        clockEnd.SetActive(true);
+                        
+                    }
+                }
+
+                // if (fpsPlayer.GetComponent<PickUpObject>().doublePilled)
+                // {
+                //     clockRun.SetActive(false);
+                //     clockStart.SetActive(true);
+                //     clockRun.SetActive(true);
+                // }
+
+                // if (secondsCount > 20 && fpsPlayer.GetComponent<PickUpObject>().doublePilled)
+                // {
+                //     clockRun.SetActive(true);
+                //     clockRunFast.SetActive(false);
+                // }
+
+                if (secondsCount >= 50 && fpsPlayer.GetComponent<PickUpObject>().doublePilled)
+                {
+                    //clockStart.SetActive(false);
+                    clockRun.SetActive(false);
+                    clockRunFast.SetActive(true);
+                    if (secondsCount >= 58 && fpsPlayer.GetComponent<PickUpObject>().doublePilled)
                     {
                         clockEnd.SetActive(false);
                         clockEnd.SetActive(true);
@@ -49,6 +75,28 @@ public class ClockTickScr : MonoBehaviour
                 }
             }
         }
+        // if (fpsPlayer.GetComponent<PickUpObject>().isViewing && fpsPlayer.GetComponent<PickUpObject>().doublePilled) {
+
+        //     //secondsCount += Time.deltaTime;
+        //     //clockStart.SetActive(true);
+
+        //     if (secondsCount >= 20) 
+        //     {
+        //         //clockStart.SetActive(false);
+        //         clockRun.SetActive(true);
+        //         if (secondsCount >= 50)
+        //         {
+        //             clockRun.SetActive(false);
+        //             clockRunFast.SetActive(true);
+        //             if (secondsCount >= 58)
+        //             {
+        //                 clockEnd.SetActive(false);
+        //                 clockEnd.SetActive(true);
+                        
+        //             }
+        //         }
+        //     }
+        // }
         else
         {
             clockRunFast.SetActive(false);

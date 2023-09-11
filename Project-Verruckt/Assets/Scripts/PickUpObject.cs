@@ -24,6 +24,8 @@ public class PickUpObject : MonoBehaviour
     public bool notColor = false;
     public bool canPill = false;
     public bool isViewing = false;
+    public bool doublePilled = false;
+
     public float pillTime;
     public float maxTime;
 
@@ -220,8 +222,12 @@ public class PickUpObject : MonoBehaviour
             }
             if (pillsTaken > maxPillsCanTake)
             {
+                //maxTime = pillTime;
                 shadowPerson.SetActive(true);
-                pillTime += 30;
+                //pillTime += 30;
+                maxTime = 60;
+                Debug.Log("Monkey");
+                doublePilled = true;
             }
             if (totalPillsTaken >= maxPillsAvaliable && !fpsPlayer.GetComponent<PickupKeyScr>().canUnlock && !isViewing)
             {

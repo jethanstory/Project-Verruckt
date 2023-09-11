@@ -10,6 +10,7 @@ public class PickupClockScr : MonoBehaviour
     string sceneName;
     GameObject ObjectIwantToDestroy;
     public GameObject objectCheck;
+    public GameObject pickupClockSound;
 
 
     // Start is called before the first frame update
@@ -47,6 +48,7 @@ public class PickupClockScr : MonoBehaviour
             Destroy(ObjectIwantToDestroy);
             // objectCheck.GetComponent<PlayerClockCheck>().hasClock = true;
             GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock = true;
+            pickupClockSound.SetActive(true);
             //hasClock = true;
         }
     }
