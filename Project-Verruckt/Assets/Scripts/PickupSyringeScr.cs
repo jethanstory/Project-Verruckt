@@ -9,6 +9,8 @@ public class PickupSyringeScr : MonoBehaviour
     public GameObject pickupSound;
     GameObject ObjectIwantToDestroy;
     public float secondsCount;
+
+    public GameObject playerSyringe;
     public GameObject textDisplay;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public class PickupSyringeScr : MonoBehaviour
             syringeCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
+            playerSyringe.SetActive(true);
             //syringeText();
 
         }
