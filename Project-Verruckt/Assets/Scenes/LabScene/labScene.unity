@@ -6730,6 +6730,7 @@ MonoBehaviour:
   notColor: 0
   canPill: 0
   isViewing: 0
+  doublePilled: 0
   pillTime: 0
   maxTime: 30
   pillsTaken: 0
@@ -8172,7 +8173,6 @@ GameObject:
   - component: {fileID: 342920872}
   - component: {fileID: 342920871}
   - component: {fileID: 342920870}
-  - component: {fileID: 342920869}
   - component: {fileID: 342920868}
   - component: {fileID: 342920867}
   m_Layer: 0
@@ -8212,24 +8212,8 @@ MonoBehaviour:
   syringeCollected: 0
   pickupSound: {fileID: 389997654}
   secondsCount: 0
+  playerSyringe: {fileID: 0}
   textDisplay: {fileID: 0}
---- !u!114 &342920869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342920866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cdd4d7bc9a17e4b86bab7ec1ba992f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BioCheck: 0
-  textShow: {fileID: 0}
-  buzzer: {fileID: 1155832260}
-  crouchJumpText: {fileID: 0}
-  crouchJumpTrigger: {fileID: 0}
 --- !u!114 &342920870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8265,6 +8249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasClock: 1
   objectCheck: {fileID: 0}
+  pickupClockSound: {fileID: 0}
 --- !u!114 &342920872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8427,6 +8412,7 @@ MonoBehaviour:
   notColor: 0
   canPill: 0
   isViewing: 0
+  doublePilled: 0
   pillTime: 0
   maxTime: 30
   pillsTaken: 0
@@ -8543,7 +8529,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342920866}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.025, y: 1.051, z: -14.053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8563,7 +8549,7 @@ Transform:
   - {fileID: 389997656}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355031256
 GameObject:
   m_ObjectHideFlags: 0
