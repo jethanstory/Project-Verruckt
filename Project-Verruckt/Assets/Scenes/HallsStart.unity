@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.44
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.056019694, g: 0.05902493, b: 0.053274628, a: 0.44}
+  m_IndirectSpecularColor: {r: 0.056019496, g: 0.0590248, b: 0.053274557, a: 0.44}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12512,6 +12512,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   pullClockOut: 0
   putClockAway: 0
+  torchObject: {fileID: 0}
   cinematicSound: {fileID: 0}
   pickedUpClock: 0
   _postProcessVolume: {fileID: 0}
@@ -39416,6 +39417,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 2104262732}
   pullClockOut: 0
   putClockAway: 0
+  torchObject: {fileID: 2008649176}
   cinematicSound: {fileID: 2130071198}
   pickedUpClock: 0
   _postProcessVolume: {fileID: 2010221273}

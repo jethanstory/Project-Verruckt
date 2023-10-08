@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 using UnityEngine.SceneManagement;
 
- 
+
 public class PickUpObject : MonoBehaviour
 {
     public GameObject myHands; //reference to your hands/the position where you want your object to go
@@ -44,10 +44,12 @@ public class PickUpObject : MonoBehaviour
     public GameObject clockHand;
 
     public Transform spawnPoint;
-    
+
     GameObject clockInstance;
     public bool pullClockOut;
     public bool putClockAway;
+
+    public GameObject torchObject;
 
     public GameObject cinematicSound;
 
@@ -71,8 +73,8 @@ public class PickUpObject : MonoBehaviour
         pillSound.SetActive(false);
         //sphereColl = GetComponent<Collider>();
     }
-    
- 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -86,14 +88,14 @@ public class PickUpObject : MonoBehaviour
         //     //{
         //     pillSound.SetActive(false);
         //     pillSound.SetActive(true);
-            
-            
+
+
         //     //canPill = true;
         //     //pillTime = 0;
-            
+
         //         //Destroy(pills);
-                
-                
+
+
 
         //         //GameObject.Find("playerBody").GetComponent<ThrowingObject>().enabled = true;
 
@@ -101,7 +103,7 @@ public class PickUpObject : MonoBehaviour
         //         //ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
         //         //ObjectIwantToPickUp.transform.rotation = myHands.transform.rotation; // sets the position of the object to your hand position
         //         //ObjectIwantToPickUp.transform.parent = myHands.transform; //makes the object become a child of the parent so that it moves with the hands
-                
+
         //     //}
         // }
 
@@ -111,32 +113,32 @@ public class PickUpObject : MonoBehaviour
         {
             if (pullClockOut)
             {
-                var step =  speed * Time.deltaTime; // calculate distance to move
+                var step = speed * Time.deltaTime; // calculate distance to move
                 clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, handTarget.position, step);
 
-            // Check if the position of the cube and sphere are approximately equal.
+                // Check if the position of the cube and sphere are approximately equal.
                 if (Vector3.Distance(clockHand.transform.position, handTarget.position) < 0.0001f)//< 0.001f)
                 {
-                // Swap the position of the cylinder.
+                    // Swap the position of the cylinder.
                     pullClockOut = false;
                 }
             }
 
             if (putClockAway)
             {
-                var step =  speed * Time.deltaTime; // calculate distance to move
+                var step = speed * Time.deltaTime; // calculate distance to move
                 clockHand.transform.position = Vector3.MoveTowards(clockHand.transform.position, pocketTarget.position, step);
 
                 // Check if the position of the cube and sphere are approximately equal.
                 if (Vector3.Distance(clockHand.transform.position, pocketTarget.position) < 0.0001f)//< 0.001f)
                 {
-                // Swap the position of the cylinder.
-                putClockAway = false;
-                clockHand.SetActive(false);
+                    // Swap the position of the cylinder.
+                    putClockAway = false;
+                    clockHand.SetActive(false);
                 }
             }
         }
-        
+
         // if (pullClockOut)
         // {
         //     var step =  speed * Time.deltaTime; // calculate distance to move
@@ -163,10 +165,11 @@ public class PickUpObject : MonoBehaviour
         //         clockHand.SetActive(false);
         //     }
         // }
-        
+
 
         if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
         {
+            torchObject.SetActive(false);
             isViewing = true;
             viewSource.SetActive(true); //viewSource.SetActive(false);
             hintSource.SetActive(true);
@@ -180,19 +183,19 @@ public class PickUpObject : MonoBehaviour
             pillsCollected -= 1;
             pillsTaken += 1;
             totalPillsTaken += 1;
-            
+
             //fpsPlayer.GetComponent<PickupNoteScr>().notesCanvas.SetActive(false);
             fpsPlayer.GetComponent<PickupNoteAdvScr>().notesCanvas.SetActive(false);
             // if (notColor == false)
             //     {
-                    
+
             //         viewSource.SetActive(true);
             //         notColor = true;
             //     }
 
             // else if (notColor == true)
             // {
-                
+
             //     viewSource.SetActive(false);
             //     notColor = false;
             // }  
@@ -213,10 +216,11 @@ public class PickUpObject : MonoBehaviour
                 otherObjects.SetActive(false);
                 realObjects.SetActive(true);
                 shadowPerson.SetActive(false);
+                torchObject.SetActive(true);
                 pillsTaken -= 1;
                 isViewing = false;
                 putClockAway = true;
-                
+
                 //clockHand.SetActive(false);
                 //Destroy(clockInstance);
             }
@@ -237,7 +241,7 @@ public class PickUpObject : MonoBehaviour
                 Time.timeScale = 0;
             }
 
-        } 
+        }
         else
         {
             //_postProcessVolume.weight = 0;
@@ -245,17 +249,17 @@ public class PickUpObject : MonoBehaviour
             //pillSound.SetActive(false);
         }
         //if (Input.GetKeyDown("q") && hasItem == true) // if you have an item and get the key to remove the object, again can be any key
-       // {
-           // ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false; // make the rigidbody work again
-         
-           // ObjectIwantToPickUp.transform.parent = null; // make the object no be a child of the hands
+        // {
+        // ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false; // make the rigidbody work again
+
+        // ObjectIwantToPickUp.transform.parent = null; // make the object no be a child of the hands
         //}
     }
 
-    
-   private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+
+    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
-        if(other.gameObject.tag == "Pills") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "Pills") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             //canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
@@ -270,5 +274,5 @@ public class PickUpObject : MonoBehaviour
     {
         //canpickup = false; //when you leave the collider set the canpickup bool to false
     }
-    
+
 }
