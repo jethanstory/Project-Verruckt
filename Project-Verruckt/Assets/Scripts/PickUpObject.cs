@@ -216,10 +216,14 @@ public class PickUpObject : MonoBehaviour
                 otherObjects.SetActive(false);
                 realObjects.SetActive(true);
                 shadowPerson.SetActive(false);
-                torchObject.SetActive(true);
                 pillsTaken -= 1;
                 isViewing = false;
                 putClockAway = true;
+
+                if (fpsPlayer.GetComponent<PickupFlashlightScr>().flashLightCollected)
+                {
+                    torchObject.SetActive(true);
+                }
 
                 //clockHand.SetActive(false);
                 //Destroy(clockInstance);
