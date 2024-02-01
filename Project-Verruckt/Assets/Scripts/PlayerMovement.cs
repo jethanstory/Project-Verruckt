@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
     private Vector3 m_OriginalCameraPosition;
 
+    private Vector3 newCameraPosition;
+
+    public float CatchBreathTime;
+
 
     Vector3 velocity;
     public bool isGrounded;
@@ -55,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         m_NextStep = m_StepCycled / 2f;
         m_AudioSource = GetComponent<AudioSource>();
         m_CharacterController = GetComponent<CharacterController>();
-        m_Camera = Camera.main;
+        //m_Camera = Camera.main;
         m_OriginalCameraPosition = m_Camera.transform.localPosition;
         m_HeadBob.Setup(m_Camera, m_StepInterval);
 
@@ -97,10 +101,18 @@ public class PlayerMovement : MonoBehaviour
         {
             m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
                          Time.fixedDeltaTime;
+
+            // m_Camera.transform.localPosition =
+            // m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+            //                  (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
+            // newCameraPosition = m_Camera.transform.localPosition;
+
+
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            StartCoroutine(m_JumpBob.DoBobCycle());
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             PlayJumpSound();
         }
@@ -111,26 +123,44 @@ public class PlayerMovement : MonoBehaviour
             sprintTime += -20;
             if (sprintTime < 0)
                 canSprint = false;
+            m_Camera.transform.localPosition =
+            m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+                             (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
+            newCameraPosition = m_Camera.transform.localPosition;
 
         }
 
 
         else
         {
+            newCameraPosition = m_OriginalCameraPosition;
             speed = 3f; //12
-
             if (sprintTime < 7000)
+            {
                 sprintTime += 20; //1
+
+            }
             else if (sprintTime == 7000)
+            {
+                // CatchBreathTime = 0;
                 canSprint = true;
+            }
+            // else if (sprintTime == 0)
+            // {
+            //     CatchBreathTime += Time.deltaTime;
+            //     CatchBreathAnimation(speed);
+            // }
+
         }
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
         //PlayFootStepAudio();
+
         ProgressStepCycle(speed);
         UpdateCameraPosition(speed);
+        //CatchBreathAnimation(speed);
     }
 
 
@@ -146,11 +176,12 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         // if (m_CharacterController.velocity.sqrMagnitude > 0 && (velocity.x != 0 || velocity.y != 0))
-        if (m_CharacterController.velocity.sqrMagnitude > 0 && (x != 0 || z != 0))
-        {
-            m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
-                         Time.fixedDeltaTime;
-        }
+
+        // if (m_CharacterController.velocity.sqrMagnitude > 0 && (x != 0 || z != 0))
+        // {
+        //     m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
+        //                  Time.fixedDeltaTime;
+        // }
 
 
         // if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
@@ -199,6 +230,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        // if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)  && (x != 0 || z != 0)
         if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
         {
 
@@ -206,12 +238,35 @@ public class PlayerMovement : MonoBehaviour
                 m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                                   (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
             newCameraPosition = m_Camera.transform.localPosition;
-            newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
+            //newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
         }
         else
         {
             newCameraPosition = m_Camera.transform.localPosition;
-            newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+            //newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+        }
+        m_Camera.transform.localPosition = newCameraPosition;
+    }
+
+
+    private void CatchBreathAnimation(float speed)
+    {
+
+        Vector3 newCameraPosition;
+        // if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)  && (x != 0 || z != 0) && CatchBreathTime < 5    && CatchBreathTime < 10
+        if (m_CharacterController.isGrounded)
+        {
+
+            m_Camera.transform.localPosition =
+                m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+                                  (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
+            newCameraPosition = m_Camera.transform.localPosition;
+            //newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
+        }
+        else
+        {
+            newCameraPosition = m_Camera.transform.localPosition;
+            //newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
         }
         m_Camera.transform.localPosition = newCameraPosition;
     }
