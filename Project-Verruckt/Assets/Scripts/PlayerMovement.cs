@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(AudioSource))]
+
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
@@ -19,10 +22,32 @@ public class PlayerMovement : MonoBehaviour
 
     bool canSprint;
 
+    private float m_StepCycled;
+    private float m_NextStep;
+    private bool m_IsWalking;
+    private Vector2 m_Input;
+    private CharacterController m_CharacterController;
+    private AudioSource m_AudioSource;
+    [SerializeField] private AudioClip[] m_FootstepSounds;
+    [SerializeField][Range(0f, 1f)] private float m_RunstepLenghten;
+    [SerializeField] private float m_StepInterval;
+    [SerializeField] private AudioClip m_JumpSound;
+    private Vector3 m_MoveDir = Vector3.zero;
+    private CollisionFlags m_CollisionFlags;
+
 
     Vector3 velocity;
     public bool isGrounded;
 
+
+
+    void Start()
+    {
+        m_StepCycled = 0f;
+        m_NextStep = m_StepCycled / 2f;
+        m_AudioSource = GetComponent<AudioSource>();
+        m_CharacterController = GetComponent<CharacterController>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -35,13 +60,37 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        // Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
 
+        // RaycastHit hitInfo;
+        // Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+        //                    m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        // desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+
+
+        // m_MoveDir.x = desiredMove.x * speed;
+        // m_MoveDir.z = desiredMove.z * speed;
+
+        // m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+
+
+
+        Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
-        
-        if(Input.GetButtonDown("Jump") && isGrounded)
+
+        // velocity.x = x;
+        // velocity.z = z;
+
+        if (m_CharacterController.velocity.sqrMagnitude > 0 && (x != 0 || z != 0))
+        {
+            m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
+                         Time.fixedDeltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            PlayJumpSound();
         }
 
         if (Input.GetKey("left shift") && canSprint == true)//sprintTime >= 2) //== 3000) //>= 2) //&& isGrounded)
@@ -52,19 +101,81 @@ public class PlayerMovement : MonoBehaviour
                 canSprint = false;
 
         }
-        
-    
+
+
         else
         {
             speed = 3f; //12
-            
+
             if (sprintTime < 7000)
                 sprintTime += 20; //1
-           else if (sprintTime == 7000)
+            else if (sprintTime == 7000)
                 canSprint = true;
         }
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        //PlayFootStepAudio();
+        ProgressStepCycle(speed);
+    }
+
+
+    private void PlayJumpSound()
+    {
+        m_AudioSource.clip = m_JumpSound;
+        m_AudioSource.Play();
+    }
+
+    //Calculates the speed that the player is moving and adjusts the footsteps accordingly
+    private void ProgressStepCycle(float speed)
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        // if (m_CharacterController.velocity.sqrMagnitude > 0 && (velocity.x != 0 || velocity.y != 0))
+        if (m_CharacterController.velocity.sqrMagnitude > 0 && (x != 0 || z != 0))
+        {
+            m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
+                         Time.fixedDeltaTime;
+        }
+
+
+        // if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
+        // {
+        //     m_StepCycled += (m_CharacterController.velocity.magnitude + (speed * (m_IsWalking ? 1f : m_RunstepLenghten))) *
+        //                  Time.fixedDeltaTime;
+        // }
+
+        if (!(m_StepCycled > m_NextStep))
+        {
+            return;
+        }
+
+        m_NextStep = m_StepCycled + m_StepInterval;
+
+        PlayFootStepAudio();
+    }
+
+
+    private void PlayFootStepAudio()
+    {
+        if (!m_CharacterController.isGrounded)
+        {
+            return;
+        }
+
+        // if (isGrounded)
+        // {
+        //     return;
+        // }
+
+        // pick & play a random footstep sound from the array,
+        // excluding sound at index 0
+        int n = Random.Range(1, m_FootstepSounds.Length);
+        m_AudioSource.clip = m_FootstepSounds[n];
+        m_AudioSource.PlayOneShot(m_AudioSource.clip);
+        // move picked sound to index 0 so it's not picked next time
+        m_FootstepSounds[n] = m_FootstepSounds[0];
+        m_FootstepSounds[0] = m_AudioSource.clip;
     }
 }
