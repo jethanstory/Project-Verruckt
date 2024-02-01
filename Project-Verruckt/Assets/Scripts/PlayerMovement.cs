@@ -1,6 +1,9 @@
 //Player Movement system
 using System.Collections;
 using System.Collections.Generic;
+using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Utility;
+using Random = UnityEngine.Random;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -34,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip m_JumpSound;
     private Vector3 m_MoveDir = Vector3.zero;
     private CollisionFlags m_CollisionFlags;
+    [SerializeField] private Camera m_Camera;
+    [SerializeField] private bool m_UseHeadBob;
+    [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob();
+    [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
+    private Vector3 m_OriginalCameraPosition;
 
 
     Vector3 velocity;
@@ -47,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
         m_NextStep = m_StepCycled / 2f;
         m_AudioSource = GetComponent<AudioSource>();
         m_CharacterController = GetComponent<CharacterController>();
+        m_Camera = Camera.main;
+        m_OriginalCameraPosition = m_Camera.transform.localPosition;
+        m_HeadBob.Setup(m_Camera, m_StepInterval);
+
     }
     // Update is called once per frame
     void Update()
@@ -118,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
         //PlayFootStepAudio();
         ProgressStepCycle(speed);
+        UpdateCameraPosition(speed);
     }
 
 
@@ -155,8 +168,6 @@ public class PlayerMovement : MonoBehaviour
 
         PlayFootStepAudio();
     }
-
-
     private void PlayFootStepAudio()
     {
         if (!m_CharacterController.isGrounded)
@@ -177,5 +188,31 @@ public class PlayerMovement : MonoBehaviour
         // move picked sound to index 0 so it's not picked next time
         m_FootstepSounds[n] = m_FootstepSounds[0];
         m_FootstepSounds[0] = m_AudioSource.clip;
+    }
+
+    private void UpdateCameraPosition(float speed)
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        Vector3 newCameraPosition;
+        if (!m_UseHeadBob)
+        {
+            return;
+        }
+        if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
+        {
+
+            m_Camera.transform.localPosition =
+                m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+                                  (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
+            newCameraPosition = m_Camera.transform.localPosition;
+            newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
+        }
+        else
+        {
+            newCameraPosition = m_Camera.transform.localPosition;
+            newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+        }
+        m_Camera.transform.localPosition = newCameraPosition;
     }
 }
