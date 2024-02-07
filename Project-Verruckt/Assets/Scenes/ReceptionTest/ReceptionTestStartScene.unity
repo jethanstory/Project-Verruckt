@@ -53617,6 +53617,7 @@ GameObject:
   - component: {fileID: 2048571900}
   - component: {fileID: 2048571903}
   - component: {fileID: 2048571904}
+  - component: {fileID: 2048571905}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Untagged
@@ -54124,6 +54125,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2048571905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048571885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a57a37f020f3da45a1ee17d3420e102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashLightPlayer: {fileID: 2048571885}
+  flashLightCollected: 0
 --- !u!1 &2050251200
 GameObject:
   m_ObjectHideFlags: 0
