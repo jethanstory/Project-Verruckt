@@ -17,6 +17,8 @@ public class PickUpObject : MonoBehaviour
     public GameObject pillSound;
     public GameObject pills;
     public GameObject viewSource;
+    public GameObject viewSourceVin;
+    public GameObject viewSourceVinDuo;
     public GameObject hintSource;
     public GameObject shadowPerson;
     public GameObject realObjects;
@@ -62,6 +64,12 @@ public class PickUpObject : MonoBehaviour
     // The target (cylinder) position.
     public Transform handTarget;
     public Transform pocketTarget;
+
+
+    public PostProcessVolume myPostProcess;
+
+    public bool fadeOut;
+    public bool fadeIn;
 
     //public Collider sphereColl;
     // Start is called before the first frame update
@@ -169,9 +177,11 @@ public class PickUpObject : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V) && pillsCollected >= 1)
         {
+            fadeIn = true;
+            fadeOut = false;
             torchObject.SetActive(false);
             isViewing = true;
-            viewSource.SetActive(true); //viewSource.SetActive(false);
+            // viewSource.SetActive(true); //viewSource.SetActive(false);
             hintSource.SetActive(true);
             otherObjects.SetActive(true);
             realObjects.SetActive(false);
@@ -211,7 +221,7 @@ public class PickUpObject : MonoBehaviour
             if (pillTime >= maxTime)
             {
                 cinematicSound.SetActive(false);
-                viewSource.SetActive(false); //viewSource.SetActive(true);
+                // viewSource.SetActive(false); //viewSource.SetActive(true);
                 hintSource.SetActive(false);
                 otherObjects.SetActive(false);
                 realObjects.SetActive(true);
@@ -219,6 +229,8 @@ public class PickUpObject : MonoBehaviour
                 pillsTaken -= 1;
                 isViewing = false;
                 putClockAway = true;
+                fadeIn = false;
+                fadeOut = true;
 
                 if (fpsPlayer.GetComponent<PickupFlashlightScr>().flashLightCollected)
                 {
@@ -243,6 +255,28 @@ public class PickUpObject : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Time.timeScale = 0;
+            }
+            if (fadeIn)
+            {
+                if (myPostProcess.weight < 1)
+                {
+                    myPostProcess.weight += 20 * Time.deltaTime; // 20 * 
+                    if (myPostProcess.weight >= 1)
+                    {
+                        fadeIn = false;
+                    }
+                }
+            }
+            if (fadeOut)
+            {
+                if (myPostProcess.weight >= 0)
+                {
+                    myPostProcess.weight -= Time.deltaTime;
+                    if (myPostProcess.weight == 0)
+                    {
+                        fadeOut = false;
+                    }
+                }
             }
 
         }

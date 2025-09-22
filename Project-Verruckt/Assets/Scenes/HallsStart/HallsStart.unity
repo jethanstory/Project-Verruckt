@@ -13041,6 +13041,9 @@ MonoBehaviour:
   speed: 1
   handTarget: {fileID: 0}
   pocketTarget: {fileID: 0}
+  myPostProcess: {fileID: 0}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &356813968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40574,6 +40577,9 @@ MonoBehaviour:
   speed: 0.5
   handTarget: {fileID: 832357066}
   pocketTarget: {fileID: 353484905}
+  myPostProcess: {fileID: 2010221273}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &1076331436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59262,7 +59268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &2010221272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59291,7 +59297,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: f07bdd8dd772086438a843e3f39070e7, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!4 &2010221274
 Transform:

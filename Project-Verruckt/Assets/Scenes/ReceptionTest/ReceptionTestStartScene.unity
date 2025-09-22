@@ -10346,6 +10346,8 @@ MonoBehaviour:
   pillSound: {fileID: 1515330951}
   pills: {fileID: 1623006648}
   viewSource: {fileID: 0}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 0}
   shadowPerson: {fileID: 0}
   realObjects: {fileID: 2011735224}
@@ -10374,6 +10376,9 @@ MonoBehaviour:
   speed: 1
   handTarget: {fileID: 0}
   pocketTarget: {fileID: 0}
+  myPostProcess: {fileID: 0}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &298174220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26626,7 +26631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &894375690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26655,7 +26660,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: f07bdd8dd772086438a843e3f39070e7, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!4 &894375692
 Transform:
@@ -55544,6 +55549,8 @@ MonoBehaviour:
   pillSound: {fileID: 1515330951}
   pills: {fileID: 1623006648}
   viewSource: {fileID: 894375689}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 342904460}
   shadowPerson: {fileID: 1247122440}
   realObjects: {fileID: 2011735224}
@@ -55572,6 +55579,9 @@ MonoBehaviour:
   speed: 0.5
   handTarget: {fileID: 18209425}
   pocketTarget: {fileID: 758661327}
+  myPostProcess: {fileID: 894375691}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &2048571890
 MonoBehaviour:
   m_ObjectHideFlags: 0
