@@ -1,18 +1,137 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class DodgyPillScr : MonoBehaviour
 {
+    public bool dodgyPillTaken = false;
+    public float randChangeTime;
+
+    public float inBetweenSwapTime;
+    public float endPillTime;
+    public GameObject dPillSound;
+
+    public GameObject cinematicSound;
+
+    public GameObject otherObjects;
+    public GameObject realObjects;
+    public GameObject viewSource;
+    public GameObject torchObject;
+    GameObject ObjectIwantToDestroy;
+
+    public int dPillsCollected;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.V) && dPillsCollected >= 1)
+        {
+            dodgyPillTaken = true;
+        }
+
+
+        if (dodgyPillTaken)
+        {
+            endPillTime += Time.deltaTime;
+            inBetweenSwapTime += Time.deltaTime;
+            torchObject.SetActive(false);
+
+            if (endPillTime < 30)
+            {
+                if (inBetweenSwapTime < 5)
+                    InBetween();
+                else if (inBetweenSwapTime > 15 && inBetweenSwapTime < 20)
+                    InBetween();
+                else if (inBetweenSwapTime > 27)
+                    InBetween();
+                else
+                {
+                    otherObjects.SetActive(true);
+                    realObjects.SetActive(false);
+                    viewSource.SetActive(true);
+                }
+                // randChangeTime = Random.Range(0f, 1f);
+                // if (randChangeTime > 0.5f)
+                // {
+                //     otherObjects.SetActive(true);
+                //     realObjects.SetActive(false);
+                //     viewSource.SetActive(true);
+                //     //randChangeTime = Random.Range(0f, 0.26f);
+                //     //randChangeTime = Random.Range(0f, 0.499f);
+                // }
+                // else if (randChangeTime < 0.5f)
+                // {
+                //     otherObjects.SetActive(false);
+                //     realObjects.SetActive(true);
+                //     viewSource.SetActive(false);
+                //     //randChangeTime = Random.Range(0f, 0.7f);
+                //     //randChangeTime = Random.Range(0f, 0.99f);
+                // }
+                // //randChangeTime = Random.Range(0f, 1f);
+            }
+            else
+            {
+                randChangeTime = 0;
+                otherObjects.SetActive(false);
+                realObjects.SetActive(true);
+                viewSource.SetActive(false);
+                dodgyPillTaken = false;
+            }
+
+        }
+        else
+        {
+            endPillTime = 0;
+            torchObject.SetActive(true);
+        }
+
     }
+
+    private void InBetween()
+    {
+        randChangeTime = Random.Range(0f, 1f);
+        if (randChangeTime > 0.5f)
+        {
+            otherObjects.SetActive(true);
+            realObjects.SetActive(false);
+            viewSource.SetActive(true);
+            //randChangeTime = Random.Range(0f, 0.26f);
+            //randChangeTime = Random.Range(0f, 0.499f);
+        }
+        else if (randChangeTime < 0.5f)
+        {
+            otherObjects.SetActive(false);
+            realObjects.SetActive(true);
+            viewSource.SetActive(false);
+            //randChangeTime = Random.Range(0f, 0.7f);
+            //randChangeTime = Random.Range(0f, 0.99f);
+        }
+        //randChangeTime = Random.Range(0f, 1f);
+    }
+
+
+    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    {
+        if (other.gameObject.tag == "DodgyPills") //on the object you want to pick up set the tag to be anything, in this case "object"
+        {
+            //canpickup = true;  //set the pick up bool to true
+            ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
+            Destroy(ObjectIwantToDestroy);
+            dPillsCollected += 1;
+            dPillSound.SetActive(false);
+            dPillSound.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        //canpickup = false; //when you leave the collider set the canpickup bool to false
+    }
+
 }
