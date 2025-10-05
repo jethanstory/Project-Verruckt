@@ -13013,6 +13013,8 @@ MonoBehaviour:
   pillSound: {fileID: 0}
   pills: {fileID: 0}
   viewSource: {fileID: 0}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 0}
   shadowPerson: {fileID: 0}
   realObjects: {fileID: 0}
@@ -40549,6 +40551,8 @@ MonoBehaviour:
   pillSound: {fileID: 65231366}
   pills: {fileID: 2020451152}
   viewSource: {fileID: 2010221271}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 301342873}
   shadowPerson: {fileID: 590519529}
   realObjects: {fileID: 1609814171}
@@ -59268,7 +59272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2010221272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59297,7 +59301,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: f07bdd8dd772086438a843e3f39070e7, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 0
+  weight: 1
   priority: 0
 --- !u!4 &2010221274
 Transform:

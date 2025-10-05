@@ -57436,6 +57436,8 @@ MonoBehaviour:
   pillSound: {fileID: 522586205}
   pills: {fileID: 1616864915}
   viewSource: {fileID: 1090059358}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 1405804299}
   shadowPerson: {fileID: 1420979007}
   realObjects: {fileID: 24584932}
@@ -57464,6 +57466,9 @@ MonoBehaviour:
   speed: 0.5
   handTarget: {fileID: 61583579}
   pocketTarget: {fileID: 1106511022}
+  myPostProcess: {fileID: 1090059360}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &1161026801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59916,6 +59921,8 @@ MonoBehaviour:
   pillSound: {fileID: 522586205}
   pills: {fileID: 1616864915}
   viewSource: {fileID: 0}
+  viewSourceVin: {fileID: 0}
+  viewSourceVinDuo: {fileID: 0}
   hintSource: {fileID: 0}
   shadowPerson: {fileID: 0}
   realObjects: {fileID: 24584932}
@@ -59944,6 +59951,9 @@ MonoBehaviour:
   speed: 1
   handTarget: {fileID: 0}
   pocketTarget: {fileID: 0}
+  myPostProcess: {fileID: 0}
+  fadeOut: 0
+  fadeIn: 0
 --- !u!114 &1195294741
 MonoBehaviour:
   m_ObjectHideFlags: 0
