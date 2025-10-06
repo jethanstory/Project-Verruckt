@@ -8,6 +8,7 @@ public class DodgyPillScr : MonoBehaviour
 {
     public bool dodgyPillTaken = false;
     public float randChangeTime;
+    public float randSetTime;
 
     public float inBetweenSwapTime;
     public float endPillTime;
@@ -42,14 +43,15 @@ public class DodgyPillScr : MonoBehaviour
             endPillTime += Time.deltaTime;
             inBetweenSwapTime += Time.deltaTime;
             torchObject.SetActive(false);
+            randSetTime = Random.Range(0f, 1f);
 
             if (endPillTime < 30)
             {
-                if (inBetweenSwapTime < 5)
+                if (inBetweenSwapTime < Random.Range(0f, 5f)) // 5
                     InBetween();
-                else if (inBetweenSwapTime > 15 && inBetweenSwapTime < 20)
+                else if (inBetweenSwapTime > 15 && inBetweenSwapTime < Random.Range(16f, 20f)) // 15, 20
                     InBetween();
-                else if (inBetweenSwapTime > 27)
+                else if (inBetweenSwapTime > Random.Range(27f, 29f)) // 27
                     InBetween();
                 else
                 {
@@ -97,6 +99,7 @@ public class DodgyPillScr : MonoBehaviour
     private void InBetween()
     {
         randChangeTime = Random.Range(0f, 1f);
+        randSetTime = Random.Range(0f, 1f);
         if (randChangeTime > 0.5f)
         {
             otherObjects.SetActive(true);
