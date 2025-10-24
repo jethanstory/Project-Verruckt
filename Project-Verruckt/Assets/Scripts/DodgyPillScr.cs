@@ -23,6 +23,8 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject torchObject;
     GameObject ObjectIwantToDestroy;
 
+    public GameObject fpsPlayer;
+
     public int dPillsCollected;
     // Start is called before the first frame update
     void Start()
@@ -106,7 +108,10 @@ public class DodgyPillScr : MonoBehaviour
         else
         {
             endPillTime = 0;
-            torchObject.SetActive(true);
+            if (!fpsPlayer.GetComponent<PickUpObject>().isViewing)
+            {
+                torchObject.SetActive(true);
+            }
         }
 
     }
