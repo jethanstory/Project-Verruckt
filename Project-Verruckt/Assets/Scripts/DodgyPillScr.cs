@@ -15,6 +15,7 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject dPillSound;
 
     public GameObject cinematicSound;
+    public GameObject cinematicSoundFast;
 
     public GameObject otherObjects;
     public GameObject realObjects;
@@ -44,6 +45,7 @@ public class DodgyPillScr : MonoBehaviour
             inBetweenSwapTime += Time.deltaTime;
             torchObject.SetActive(false);
             randSetTime = Random.Range(0f, 1f);
+            cinematicSound.SetActive(true);
 
             if (endPillTime < 30)
             {
@@ -58,6 +60,7 @@ public class DodgyPillScr : MonoBehaviour
                     otherObjects.SetActive(true);
                     realObjects.SetActive(false);
                     viewSource.SetActive(true);
+                    // cinematicSoundFast.SetActive(false);
                 }
                 // randChangeTime = Random.Range(0f, 1f);
                 // if (randChangeTime > 0.5f)
@@ -85,6 +88,8 @@ public class DodgyPillScr : MonoBehaviour
                 realObjects.SetActive(true);
                 viewSource.SetActive(false);
                 dodgyPillTaken = false;
+                cinematicSound.SetActive(false);
+                cinematicSoundFast.SetActive(false);
             }
 
         }
@@ -98,9 +103,10 @@ public class DodgyPillScr : MonoBehaviour
 
     private void InBetween()
     {
+        // cinematicSoundFast.SetActive(true);
         randChangeTime = Random.Range(0f, 1f);
         randSetTime = Random.Range(0f, 1f);
-        if (randChangeTime > 0.5f)
+        if (randChangeTime > 0.7f) // 0.5
         {
             otherObjects.SetActive(true);
             realObjects.SetActive(false);
@@ -108,7 +114,7 @@ public class DodgyPillScr : MonoBehaviour
             //randChangeTime = Random.Range(0f, 0.26f);
             //randChangeTime = Random.Range(0f, 0.499f);
         }
-        else if (randChangeTime < 0.5f)
+        else if (randChangeTime < 0.7f) // 0.5
         {
             otherObjects.SetActive(false);
             realObjects.SetActive(true);
