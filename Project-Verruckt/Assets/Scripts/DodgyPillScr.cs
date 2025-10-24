@@ -49,17 +49,26 @@ public class DodgyPillScr : MonoBehaviour
 
             if (endPillTime < 30)
             {
-                if (inBetweenSwapTime < Random.Range(0f, 5f)) // 5
+                //if (inBetweenSwapTime < Random.Range(0f, 5f)) // 5
+                if (inBetweenSwapTime < 5f) // 5
+                {
                     InBetween();
+                    cinematicSoundFast.SetActive(true);
+                }
                 else if (inBetweenSwapTime > 15 && inBetweenSwapTime < Random.Range(16f, 20f)) // 15, 20
                     InBetween();
+                else if (inBetweenSwapTime > 14.95 && inBetweenSwapTime < 19.95f) // 5
+                    cinematicSoundFast.SetActive(true);
                 else if (inBetweenSwapTime > Random.Range(27f, 29f)) // 27
                     InBetween();
+                else if (inBetweenSwapTime > 26.95 && inBetweenSwapTime < 28.95f) // 5
+                    cinematicSoundFast.SetActive(true);
                 else
                 {
                     otherObjects.SetActive(true);
                     realObjects.SetActive(false);
                     viewSource.SetActive(true);
+                    cinematicSoundFast.SetActive(false);
                     // cinematicSoundFast.SetActive(false);
                 }
                 // randChangeTime = Random.Range(0f, 1f);
@@ -125,7 +134,6 @@ public class DodgyPillScr : MonoBehaviour
         }
         //randChangeTime = Random.Range(0f, 1f);
     }
-
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
