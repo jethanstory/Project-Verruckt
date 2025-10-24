@@ -90,6 +90,7 @@ public class DodgyPillScr : MonoBehaviour
                 dodgyPillTaken = false;
                 cinematicSound.SetActive(false);
                 cinematicSoundFast.SetActive(false);
+                dPillsCollected -= 1;
             }
 
         }
