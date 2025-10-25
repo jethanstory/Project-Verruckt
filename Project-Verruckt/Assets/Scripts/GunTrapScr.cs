@@ -8,6 +8,8 @@ public class GunTrapScr : MonoBehaviour
 
     public GameObject loseCanvas;
 
+    public GameObject soundOn;
+
     public bool playerShot = false;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class GunTrapScr : MonoBehaviour
         if (other.gameObject.tag == "GunBoobyTrap") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             playerShot = true;
+            soundOn.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
