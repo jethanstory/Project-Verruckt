@@ -5,7 +5,7 @@ using UnityEngine;
 public class PillTextScr : MonoBehaviour
 {
     float secondsCount = 0;
-    
+
     public GameObject textControls;
     public GameObject textGoal;
 
@@ -13,7 +13,7 @@ public class PillTextScr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,13 +22,14 @@ public class PillTextScr : MonoBehaviour
         checkPills();
     }
 
-    void checkPills() {
-        if (fpsPlayer.GetComponent<PickUpObject>().hasItem) {
-
+    void checkPills()
+    {
+        if (fpsPlayer.GetComponent<PickUpObject>().hasItem || fpsPlayer.GetComponent<DodgyPillScr>().dPillsCollected > 0)
+        {
             secondsCount += Time.deltaTime;
             textControls.SetActive(true);
 
-            if (secondsCount > 5) 
+            if (secondsCount > 5)
             {
                 textControls.SetActive(false);
                 // textGoal.SetActive(true);
@@ -37,8 +38,8 @@ public class PillTextScr : MonoBehaviour
                 //     textGoal.SetActive(false);
                 // }
             }
-        } 
+        }
     }
 
-    
+
 }
