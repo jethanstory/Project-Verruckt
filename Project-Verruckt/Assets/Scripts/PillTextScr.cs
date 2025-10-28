@@ -24,7 +24,7 @@ public class PillTextScr : MonoBehaviour
 
     void checkPills()
     {
-        if (fpsPlayer.GetComponent<PickUpObject>().hasItem || fpsPlayer.GetComponent<DodgyPillScr>().dPillsCollected > 0)
+        if (fpsPlayer.GetComponent<PickUpObject>().hasItem) // || fpsPlayer.GetComponent<DodgyPillScr>().dPillsCollected > 0)
         {
             secondsCount += Time.deltaTime;
             textControls.SetActive(true);
