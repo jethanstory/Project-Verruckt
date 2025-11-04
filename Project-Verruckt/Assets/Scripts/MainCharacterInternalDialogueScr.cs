@@ -9,6 +9,7 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
     public float secondsCount = 0;
     public float secondsCountPast = 0;
     string sceneName;
+    public GameObject dialogueBox;
     bool firstTime = true;
     public Text Txt;
     public GameObject fpsPlayer;
@@ -26,26 +27,26 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
         {
             secondsCount += Time.deltaTime;
             if (secondsCount >= 4)
-                Txt.text = "Ah shit, I left my painkillers at home. Maybe they have some here."; // "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky"
+                Txt.text = "Hmm, I left my painkillers at home. Maybe they have some here."; // "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky"
             if (secondsCount >= 9)
                 Txt.text = "";
 
             if (firstTime && fpsPlayer.GetComponent<PickUpObject>().isViewing)
             {
                 secondsCountPast += Time.deltaTime;
-                Txt.text = "HOLY FUCK WHAT IS GOING ON";
+                Txt.text = "Oh God what is going on";
                 if (secondsCountPast >= 3)
                     Txt.text = "";
                 if (secondsCountPast >= 6)
-                    Txt.text = "Fuck I shouldn't have taken those. oh god";
+                    Txt.text = "";
                 if (secondsCountPast >= 9)
                     Txt.text = "";
                 if (secondsCountPast >= 12)
-                    Txt.text = "Oh shit man";
+                    Txt.text = "I shouldn't have taken those";
                 if (secondsCountPast >= 15)
                     Txt.text = "";
                 if (secondsCountPast >= 18)
-                    Txt.text = "What the fuck";
+                    Txt.text = "";
                 if (secondsCountPast >= 21)
                     Txt.text = "";
             }
@@ -54,7 +55,14 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
                 secondsCountPast = 0;
                 firstTime = false;
             }
-
+            if (fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+            {
+                dialogueBox.SetActive(false);
+            }
+            else if (!fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+            {
+                dialogueBox.SetActive(true);
+            }
         }
 
     }

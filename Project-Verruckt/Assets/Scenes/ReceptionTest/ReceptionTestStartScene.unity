@@ -56943,6 +56943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 270773717}
+  activeMenu: 0
 --- !u!114 &2048571899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57149,6 +57150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb99583d5826b140b91f04df8bb6e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsCount: 0
+  secondsCountPast: 0
+  dialogueBox: {fileID: 1283440698}
   Txt: {fileID: 458676076}
   fpsPlayer: {fileID: 2048571885}
 --- !u!1 &2050251200

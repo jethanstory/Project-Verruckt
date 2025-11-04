@@ -6,12 +6,12 @@ public class PauseMenuScr : MonoBehaviour
 {
 
     public GameObject menuCanvas;
-    private bool activeMenu; 
+    public bool activeMenu;
 
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class PauseMenuScr : MonoBehaviour
     }
 
     public void checkMenu()
-    {   
+    {
         if (activeMenu)
         {
             activeMenu = false;
