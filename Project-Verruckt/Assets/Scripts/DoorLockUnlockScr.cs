@@ -69,7 +69,7 @@ public class DoorLockUnlockScr : MonoBehaviour
                 doorLockedSound.SetActive(true);
 
             }
-            else if (doorStuckCount > 10)
+            if (doorStuckCount > 4) //10
             {
                 doorStuckSound.SetActive(false);
                 doorStuckSound.SetActive(true);
