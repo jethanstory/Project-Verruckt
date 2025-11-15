@@ -26,6 +26,7 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public int dPillsCollected;
+    public int dPillsTotalTaken;
 
 
     void Update()
@@ -97,6 +98,7 @@ public class DodgyPillScr : MonoBehaviour
                 cinematicSound.SetActive(false);
                 cinematicSoundFast.SetActive(false);
                 dPillsCollected -= 1;
+                dPillsTotalTaken += 1;
             }
 
         }
