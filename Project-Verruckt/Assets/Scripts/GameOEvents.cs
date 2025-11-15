@@ -6,30 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class GameOEvents : MonoBehaviour
 {
-    // Start is called before the first frame update
     public void ReplayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //SceneManager.LoadScene("Forest");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // Update is called once per frame
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
-        //SceneManager.LoadScene("TestStartScene"); //SceneManager.LoadScene("Forest"); 
-        SceneManager.LoadScene("GameIntroTextScene"); //SceneManager.LoadScene("Forest"); 
+        //SceneManager.LoadScene("TestStartScene");
+        SceneManager.LoadScene("GameIntroTextScene");
     }
 
-    public void MenuScene() 
+    public void MenuScene()
     {
-        SceneManager.LoadScene("MainMenuStart"); //SceneManager.LoadScene("Forest"); 
+        SceneManager.LoadScene("MainMenuStart");
     }
-    public void CreditsScene() 
+    public void CreditsScene()
     {
-        SceneManager.LoadScene("CreditsScene"); //SceneManager.LoadScene("Forest"); 
+        SceneManager.LoadScene("CreditsScene");
     }
 }

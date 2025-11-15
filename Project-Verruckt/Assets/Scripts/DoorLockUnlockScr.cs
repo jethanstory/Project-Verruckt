@@ -20,13 +20,8 @@ public class DoorLockUnlockScr : MonoBehaviour
     public bool atDoor = false;
 
     public int doorStuckCount;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (canLeave && atDoor)
@@ -36,9 +31,9 @@ public class DoorLockUnlockScr : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ExitDoor") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "ExitDoor")
         {
             atDoor = true;
             checkKey();

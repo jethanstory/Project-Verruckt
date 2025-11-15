@@ -13,14 +13,15 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
     bool firstTime = true;
     public Text Txt;
     public GameObject fpsPlayer;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
         sceneName = scene.name;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (sceneName == "ReceptionTestStartScene")

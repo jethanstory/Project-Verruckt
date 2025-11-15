@@ -10,19 +10,19 @@ public class FlashLightMech : MonoBehaviour
 
     public GameObject torchSound;
 
-    // Update is called once per frame
+
     void Update()
     {
         //if (Input.GetButtonDown("FKey"))
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (isOn == false)
-                {
-                    torchSound.SetActive(false);
-                    lightSource.SetActive(true);
-                    isOn = true;
-                    torchSound.SetActive(true);
-                }
+            {
+                torchSound.SetActive(false);
+                lightSource.SetActive(true);
+                isOn = true;
+                torchSound.SetActive(true);
+            }
 
             else if (isOn == true)
             {
@@ -31,8 +31,8 @@ public class FlashLightMech : MonoBehaviour
                 isOn = false;
                 torchSound.SetActive(true);
             }
-            
-        } 
-        
+
+        }
+
     }
 }

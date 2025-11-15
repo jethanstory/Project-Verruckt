@@ -22,13 +22,15 @@ public class PillEffectsExperimentalTransitionScr : MonoBehaviour
     public bool hasTimed = false;
 
     public GameObject fpsPlayer;
-    // Start is called before the first frame update
+
+
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         // OldTestTransition();

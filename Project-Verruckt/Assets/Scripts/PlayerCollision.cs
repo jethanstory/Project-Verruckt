@@ -7,23 +7,23 @@ using UnityEngine.SceneManagement;
 public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    void OnCollisionEnter (UnityEngine.Collision collisionInfo) 
+    void OnCollisionEnter(UnityEngine.Collision collisionInfo)
     {
-        if (collisionInfo.collider.name == "Enemy" || collisionInfo.collider.name == "WanderingEnemy" || collisionInfo.collider.name == "flyingEnemy" || collisionInfo.collider.name == "longOne" || collisionInfo.collider.name == "enemyCorrupt" )
-        
+        if (collisionInfo.collider.name == "Enemy" || collisionInfo.collider.name == "WanderingEnemy" || collisionInfo.collider.name == "flyingEnemy" || collisionInfo.collider.name == "longOne" || collisionInfo.collider.name == "enemyCorrupt")
+
         {
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(2);
             Debug.Log("HIT");
-            
+
         }
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+
     }
 }
 

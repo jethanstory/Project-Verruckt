@@ -26,13 +26,8 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public int dPillsCollected;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V) && dPillsCollected >= 1)
@@ -140,11 +135,10 @@ public class DodgyPillScr : MonoBehaviour
         //randChangeTime = Random.Range(0f, 1f);
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "DodgyPills") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "DodgyPills")
         {
-            //canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
             dPillsCollected += 1;
@@ -154,7 +148,7 @@ public class DodgyPillScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        //canpickup = false; //when you leave the collider set the canpickup bool to false
+
     }
 
 }

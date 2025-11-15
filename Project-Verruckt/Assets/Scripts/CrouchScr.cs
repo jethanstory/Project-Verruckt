@@ -6,13 +6,13 @@ public class CrouchScr : MonoBehaviour
 {
     public CharacterController controller;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl))

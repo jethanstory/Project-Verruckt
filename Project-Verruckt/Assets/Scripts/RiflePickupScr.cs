@@ -11,17 +11,6 @@ public class RiflePickupScr : MonoBehaviour
     public GameObject rifleUnderDeskWire;
     public GameObject pickedUpRifle;
     public bool riflePickedUp;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {

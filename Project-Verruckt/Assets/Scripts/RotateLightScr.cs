@@ -8,13 +8,14 @@ public class RotateLightScr : MonoBehaviour
     public float speed;
 
     public bool isRandom;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         rotation = Vector3.up;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         StartCoroutine(RandomSpeed());

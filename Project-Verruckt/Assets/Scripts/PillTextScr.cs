@@ -10,13 +10,13 @@ public class PillTextScr : MonoBehaviour
     public GameObject textGoal;
 
     public GameObject fpsPlayer;
-    // Start is called before the first frame update
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         checkPills();

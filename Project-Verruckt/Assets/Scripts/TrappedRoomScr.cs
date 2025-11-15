@@ -12,13 +12,7 @@ public class TrappedRoomScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public GameObject loseCanvas;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         TrappedRoom();
@@ -32,25 +26,28 @@ public class TrappedRoomScr : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "DoorStuck") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "DoorStuck")
         {
-           canBeStuck = true;
-            
+            canBeStuck = true;
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        canBeStuck = false; 
-     
+        canBeStuck = false;
+
     }
 
-    void TrappedRoom() {
-        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck) {
+    void TrappedRoom()
+    {
+        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck)
+        {
             playerStuck = true;
         }
-        else {
+        else
+        {
             playerStuck = false;
         }
     }

@@ -8,13 +8,6 @@ public class PauseMenuScr : MonoBehaviour
     public GameObject menuCanvas;
     public bool activeMenu;
 
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
