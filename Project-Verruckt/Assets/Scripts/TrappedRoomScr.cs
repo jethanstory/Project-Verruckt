@@ -39,13 +39,15 @@ public class TrappedRoomScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        canBeStuck = false;
-
+        if (other.gameObject.tag == "DoorStuck")
+        {
+            canBeStuck = false;
+        }
     }
 
     void TrappedRoom()
     {
-        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck)
+        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck && fpsPlayer.GetComponent<PickUpObject>().totalPillsTaken > 0)// == fpsPlayer.GetComponent<PickUpObject>().pillsCollected)
         {
             playerStuck = true;
         }
