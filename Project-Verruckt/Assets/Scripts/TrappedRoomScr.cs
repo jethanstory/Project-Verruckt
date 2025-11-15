@@ -12,12 +12,15 @@ public class TrappedRoomScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public GameObject loseCanvas;
+    public GameObject gameOverSound;
 
     void Update()
     {
         TrappedRoom();
         if (playerStuck)
         {
+            //gameOverSound.SetActive(false);
+            gameOverSound.SetActive(true);
             loseCanvas.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
