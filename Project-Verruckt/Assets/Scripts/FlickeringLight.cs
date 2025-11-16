@@ -10,11 +10,9 @@ public class FlickeringLight : MonoBehaviour
     public int FlickerMode;
     public float FlickerTime;
 
-    public GameObject lightSource;
-
     public Light light;
 
-
+    public GameObject lightSource;
 
     public float RandomIntensity;
 

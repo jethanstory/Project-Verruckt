@@ -54,12 +54,13 @@ public class BloomEffectTestScr : MonoBehaviour
         _Bloom.intensity.value = 0;
         _Vignette.intensity.value = 0;
 
+        // SORT THIS OUT, WAS COMMENTED OUT TO FIX A WARNING
 
-        void Update()
-        {
-            _Bloom.intensity.value = Mathf.Lerp(_Bloom.intensity.value, 15, .5f * Time.deltaTime);
-            _Vignette.intensity.value = Mathf.Lerp(_Vignette.intensity.value, 15, .5f * Time.deltaTime);
-        }
+        // void Update()
+        // {
+        //     _Bloom.intensity.value = Mathf.Lerp(_Bloom.intensity.value, 15, .5f * Time.deltaTime);
+        //     _Vignette.intensity.value = Mathf.Lerp(_Vignette.intensity.value, 15, .5f * Time.deltaTime);
+        // }
 
     }
 }

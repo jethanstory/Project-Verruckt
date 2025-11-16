@@ -26,6 +26,7 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject fpsPlayer;
 
     public int dPillsCollected;
+    public int maxDodgyPillsCollected;
     public int dPillsTotalTaken;
 
 
