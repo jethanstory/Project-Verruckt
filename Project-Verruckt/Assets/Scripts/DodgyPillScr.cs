@@ -22,6 +22,7 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject viewSource;
     public GameObject torchObject;
     GameObject ObjectIwantToDestroy;
+    public GameObject harmlessHalluc;
 
     public GameObject fpsPlayer;
 
@@ -45,6 +46,8 @@ public class DodgyPillScr : MonoBehaviour
             torchObject.SetActive(false);
             randSetTime = Random.Range(0f, 1f);
             cinematicSound.SetActive(true);
+
+            harmlessHalluc.SetActive(true);
 
             if (endPillTime < 30)
             {
@@ -100,6 +103,8 @@ public class DodgyPillScr : MonoBehaviour
                 cinematicSoundFast.SetActive(false);
                 dPillsCollected -= 1;
                 dPillsTotalTaken += 1;
+
+                harmlessHalluc.SetActive(false);
             }
 
         }
