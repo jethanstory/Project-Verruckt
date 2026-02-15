@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PickupFlashlightScr : MonoBehaviour
 {
-    bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
 
     //public GameObject flashLightSource;
@@ -12,29 +11,11 @@ public class PickupFlashlightScr : MonoBehaviour
 
     public bool flashLightCollected;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(canpickup == true) // if you enter thecollider of the objecct
+        if (other.gameObject.tag == "Flashlight")
         {
-            
-            
-        }
-            
-    }
-
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
-    {
-        if(other.gameObject.tag == "Flashlight") //on the object you want to pick up set the tag to be anything, in this case "object"
-        {
-            canpickup = true;  //set the pick up bool to true
-            ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
+            ObjectIwantToDestroy = other.gameObject;
             Destroy(ObjectIwantToDestroy);
             flashLightCollected = true;
             //flashLightSource.SetActive(false);
@@ -45,7 +26,6 @@ public class PickupFlashlightScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        canpickup = false; //when you leave the collider set the canpickup bool to false
-     
+
     }
 }

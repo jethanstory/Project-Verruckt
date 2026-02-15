@@ -9,23 +9,16 @@ public class BloodPickupScr : MonoBehaviour
     //GameObject ObjectIwantToDestroy;
 
     //public GameObject playerSyringe;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         //syringeText();
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Blood") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "Blood")
         {
-            //canpickup = true;  //set the pick up bool to true
             bloodCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
@@ -36,7 +29,6 @@ public class BloodPickupScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        //canpickup = false; //when you leave the collider set the canpickup bool to false
         //textDisplay.SetActive(false);
     }
 }

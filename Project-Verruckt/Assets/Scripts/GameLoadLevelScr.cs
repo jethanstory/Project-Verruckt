@@ -13,7 +13,7 @@ public class GameLoadLevelScr : MonoBehaviour
     public GameObject woodDoorClose;
     public bool checkEnd;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,7 +22,6 @@ public class GameLoadLevelScr : MonoBehaviour
         //SceneManager.LoadScene("MainZone");
     }
 
-    // Update is called once per frame
     void Update()
     {
         textTime += Time.deltaTime;

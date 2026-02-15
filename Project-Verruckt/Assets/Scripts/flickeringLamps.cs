@@ -39,24 +39,22 @@ public class flickeringLamps : MonoBehaviour
 
     public Light light;
 
-     private float restartIn = 1f;
+    private float restartIn = 1f;
 
-
-    
     public float RandomIntensity;
-   
-    
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         fpsTargetDistance = Vector3.Distance(fpsTarget.position, transform.position);
-        if (fpsTargetDistance < enemyLookDistance) {
+        if (fpsTargetDistance < enemyLookDistance)
+        {
             isFlickering = true;
             StartCoroutine(FlickerLight());
         }
@@ -83,9 +81,10 @@ public class flickeringLamps : MonoBehaviour
             StartCoroutine(FlickerLight());
         }
         */
-        else {
+        else
+        {
             light.intensity = restartIn;
-    }
+        }
 
     }
 

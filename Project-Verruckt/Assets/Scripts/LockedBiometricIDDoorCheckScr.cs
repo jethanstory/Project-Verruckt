@@ -13,21 +13,20 @@ public class LockedBiometricIDDoorCheckScr : MonoBehaviour
     public GameObject crouchJumpTrigger;
 
     public GameObject attachedObject;
-    // Start is called before the first frame update
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         BioCheck = attachedObject.GetComponent<BloodPickupScr>().bloodCollected;
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BioDoor") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "BioDoor")
         {
             if (BioCheck == false)
             {
@@ -42,7 +41,7 @@ public class LockedBiometricIDDoorCheckScr : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "CrouchJump") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "CrouchJump")
         {
             crouchJumpText.SetActive(true);
         }

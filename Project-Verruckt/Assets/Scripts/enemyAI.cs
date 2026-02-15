@@ -18,55 +18,61 @@ public class enemyAI : MonoBehaviour
 
     public bool isOn = false;
 
-    //private Light enemyLight;
-    // Start is called before the first frame update
+    //private Light enemyLight;r
+
+
     void Start()
     {
-       myRenderer = GetComponent<Renderer>();
-       theRigidBody = GetComponent<Rigidbody>();
+        myRenderer = GetComponent<Renderer>();
+        theRigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         fpsTargetDistance = Vector3.Distance(fpsTarget.position, transform.position);
-        if (fpsTargetDistance < enemyLookDistance) {
+        if (fpsTargetDistance < enemyLookDistance)
+        {
             myRenderer.material.color = Color.yellow;
             lookAtPlayer();
-            if (fpsTargetDistance < attackDistance) {
+            if (fpsTargetDistance < attackDistance)
+            {
                 myRenderer.material.color = Color.red;
                 attackPlease();
             }
         }
-        
-        else{
+
+        else
+        {
             myRenderer.material.color = Color.blue;
             //enemyLight.color = Color.white;
             if (isOn == true)
-                {
-                    lightSource.SetActive(false);
-                    isOn = false;
-                }
-        }
-    }
-
-    void lookAtPlayer() {
-        Quaternion rotation = Quaternion.LookRotation(fpsTarget.position - transform.position);
-        transform.rotation = Quaternion.Slerp (transform.rotation, rotation, Time.deltaTime * damping);
-         if (isOn == false)
-                {
-                    lightSource.SetActive(true);
-                    isOn = true;
-                }
-
-            /*else if (isOn == true)
             {
                 lightSource.SetActive(false);
                 isOn = false;
-            }*/
+            }
+        }
     }
 
-    void attackPlease() {
+    void lookAtPlayer()
+    {
+        Quaternion rotation = Quaternion.LookRotation(fpsTarget.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        if (isOn == false)
+        {
+            lightSource.SetActive(true);
+            isOn = true;
+        }
+
+        /*else if (isOn == true)
+        {
+            lightSource.SetActive(false);
+            isOn = false;
+        }*/
+    }
+
+    void attackPlease()
+    {
         theRigidBody.AddForce(transform.forward * enemyMovementSpeed);
         //enemyLight.color = Color.red;
         //lightSource.SetActive(true);

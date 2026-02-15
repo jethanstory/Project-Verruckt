@@ -7,10 +7,6 @@ public class RiflePickupTextScr : MonoBehaviour
     public GameObject textDisplay;
     public GameObject fpsPlayer;
     public float secondsCount = 0;
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -37,7 +33,6 @@ public class RiflePickupTextScr : MonoBehaviour
                 //     textGoal.SetActive(false);
                 // }
             }
-
         }
     }
 }

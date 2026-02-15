@@ -16,16 +16,11 @@ public class WanderAI : MonoBehaviour
 
     public Transform fpsTarget;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isWandering == false){
+        if (isWandering == false)
+        {
             StartCoroutine(Wander());
 
         }
@@ -45,7 +40,8 @@ public class WanderAI : MonoBehaviour
 
 
 
-    IEnumerator Wander() {
+    IEnumerator Wander()
+    {
         int rotTime = Random.Range(1, 3);
         int rotateWait = Random.Range(1, 4);
         int rotateLorR = Random.Range(1, 2);
@@ -59,9 +55,9 @@ public class WanderAI : MonoBehaviour
         yield return new WaitForSeconds(walkTime);
         isWalking = true;
         yield return new WaitForSeconds(rotateWait);
-        if(rotateLorR == 1)
+        if (rotateLorR == 1)
         {
-            
+
             isRotatingRight = true;
             yield return new WaitForSeconds(rotTime);
             isRotatingRight = false;
@@ -74,5 +70,5 @@ public class WanderAI : MonoBehaviour
         }
     }
 
-    
+
 }

@@ -10,23 +10,19 @@ public class FlickeringLight : MonoBehaviour
     public int FlickerMode;
     public float FlickerTime;
 
-    public GameObject lightSource;
-
     public Light light;
 
-
+    public GameObject lightSource;
 
     public float RandomIntensity;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         isFlickering = false;
         //lightSource= GetComponent<Light>();
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (isFlickering == false)
@@ -82,7 +78,7 @@ public class FlickeringLight : MonoBehaviour
         //     //this.gameObject.GetComponent<Light>().enabled = true;
         //     isFlickering = false;
         // }
-         if (FlickerMode == 3)
+        if (FlickerMode == 3)
         {
             FlickerMode = Random.Range(1, 3);
             isFlickering = false;

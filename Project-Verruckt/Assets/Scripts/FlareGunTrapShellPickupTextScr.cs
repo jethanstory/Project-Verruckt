@@ -7,13 +7,7 @@ public class FlareGunTrapShellPickupTextScr : MonoBehaviour
     public GameObject textDisplay;
     public GameObject fpsPlayer;
     public float secondsCount = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         flareShellText();

@@ -11,21 +11,21 @@ public class FlareGunTrapTriggerScr : MonoBehaviour
     public GameObject flareTriggerWire;
     public GameObject flareVertWire;
     public bool flareShellPickedUp;
-    // Start is called before the first frame update
+
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "FlareGunShellPickup") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "FlareGunShellPickup")
         {
             flareShellPickedUp = true;
             flareDoorWire.SetActive(false);

@@ -8,18 +8,18 @@ using UnityEngine.Rendering.PostProcessing;
 public class BloomEffectTestScr : MonoBehaviour
 {
     //public PostProcessVolume volume;
- 
+
     // public PostProcessVolume volume;
     // public float BloomIntensityValue;
     // public Slider BloomIntensitySlider;
- 
+
     // public float BloomDiffusionValue;
     // public Slider BloomDiffusionSlider;
     // public void Update()
     // {
     //     ChangeBloomIntensitySettings();
     //     BloomIntensityValue = BloomIntensitySlider.value * 20;
- 
+
     //     ChangeBloomDiffusionSettings();
     //     BloomDiffusionValue = BloomDiffusionSlider.value * 10;
     // }
@@ -45,7 +45,8 @@ public class BloomEffectTestScr : MonoBehaviour
     private Vignette _Vignette;
     private Bloom _Bloom;
 
-    void Start() 
+
+    void Start()
     {
         volume.profile.TryGetSettings(out _Bloom);
         volume.profile.TryGetSettings(out _Vignette);
@@ -53,12 +54,13 @@ public class BloomEffectTestScr : MonoBehaviour
         _Bloom.intensity.value = 0;
         _Vignette.intensity.value = 0;
 
+        // SORT THIS OUT, WAS COMMENTED OUT TO FIX A WARNING
 
-    void Update()
-    {
-        _Bloom.intensity.value = Mathf.Lerp(_Bloom.intensity.value, 15, .5f * Time.deltaTime);
-        _Vignette.intensity.value = Mathf.Lerp(_Vignette.intensity.value, 15, .5f * Time.deltaTime);
-    }
+        // void Update()
+        // {
+        //     _Bloom.intensity.value = Mathf.Lerp(_Bloom.intensity.value, 15, .5f * Time.deltaTime);
+        //     _Vignette.intensity.value = Mathf.Lerp(_Vignette.intensity.value, 15, .5f * Time.deltaTime);
+        // }
 
     }
 }

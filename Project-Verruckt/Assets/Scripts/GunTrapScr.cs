@@ -11,13 +11,14 @@ public class GunTrapScr : MonoBehaviour
     public GameObject soundOn;
 
     public bool playerShot = false;
-    // Start is called before the first frame update
+
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (playerShot)
@@ -30,9 +31,9 @@ public class GunTrapScr : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "GunBoobyTrap") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "GunBoobyTrap")
         {
             playerShot = true;
             soundOn.SetActive(true);

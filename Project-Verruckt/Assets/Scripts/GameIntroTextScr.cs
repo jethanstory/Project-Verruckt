@@ -17,7 +17,7 @@ public class GameIntroTextScr : MonoBehaviour
     //public GameObject loadingText;
     public bool checkEnd;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -26,7 +26,6 @@ public class GameIntroTextScr : MonoBehaviour
         //SceneManager.LoadScene("MainZone");
     }
 
-    // Update is called once per frame
     void Update()
     {
         startTime += Time.deltaTime;

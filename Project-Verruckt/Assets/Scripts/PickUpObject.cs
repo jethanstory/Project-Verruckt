@@ -71,6 +71,8 @@ public class PickUpObject : MonoBehaviour
     public bool fadeOut;
     public bool fadeIn;
 
+    public GameObject gameOverSound;
+
     //public Collider sphereColl;
     // Start is called before the first frame update
     void Start()
@@ -251,6 +253,8 @@ public class PickUpObject : MonoBehaviour
             }
             if (totalPillsTaken >= maxPillsAvaliable && !fpsPlayer.GetComponent<PickupKeyScr>().canUnlock && !isViewing)
             {
+                // gameOverSound.SetActive(false);
+                gameOverSound.SetActive(true);
                 loseCanvas.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

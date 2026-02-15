@@ -5,30 +5,27 @@ using UnityEngine;
 public class ClockTextScr : MonoBehaviour
 {
     float secondsCount = 0;
-    
+
     public GameObject textControls;
     public GameObject textGoal;
 
     public GameObject fpsPlayer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
         checkClock();
     }
 
-    void checkClock() {
+    void checkClock()
+    {
         //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock) {
-        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock) {
+        if (GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock)
+        {
             secondsCount += Time.deltaTime;
             textControls.SetActive(true);
 
-            if (secondsCount > 5) 
+            if (secondsCount > 5)
             {
                 textControls.SetActive(false);
                 // textGoal.SetActive(true);
@@ -37,6 +34,6 @@ public class ClockTextScr : MonoBehaviour
                 //     textGoal.SetActive(false);
                 // }
             }
-        } 
+        }
     }
 }

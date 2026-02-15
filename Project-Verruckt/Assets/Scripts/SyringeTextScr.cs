@@ -9,13 +9,8 @@ public class SyringeTextScr : MonoBehaviour
 
     //bool endTime;
     public float secondsCount = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
         syringeText();
@@ -24,12 +19,13 @@ public class SyringeTextScr : MonoBehaviour
 
     public void syringeText()
     {
-        if (fpsPlayer.GetComponent<PickupSyringeScr>().syringeCollected){
+        if (fpsPlayer.GetComponent<PickupSyringeScr>().syringeCollected)
+        {
             //secondsCount = 0;
             secondsCount += Time.deltaTime;
             textDisplay.SetActive(true);
 
-            if (secondsCount > 2) 
+            if (secondsCount > 2)
             {
                 textDisplay.SetActive(false);
                 //endTime = true;
@@ -40,9 +36,9 @@ public class SyringeTextScr : MonoBehaviour
                 //     textGoal.SetActive(false);
                 // }
             }
-            
+
         }
-        
+
     }
-    
+
 }

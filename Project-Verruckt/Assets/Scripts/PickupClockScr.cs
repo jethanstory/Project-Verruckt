@@ -13,7 +13,6 @@ public class PickupClockScr : MonoBehaviour
     public GameObject pickupClockSound;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -29,7 +28,7 @@ public class PickupClockScr : MonoBehaviour
         // }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         //if (hasClock)
@@ -40,9 +39,9 @@ public class PickupClockScr : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Clock") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "Clock")
         {
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);

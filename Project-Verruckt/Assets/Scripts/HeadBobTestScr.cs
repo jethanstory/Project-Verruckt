@@ -11,13 +11,12 @@ public class HeadBobTestScr : MonoBehaviour
     float defaultPosY = 0;
     float timer = 0;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         defaultPosY = transform.localPosition.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float x = Input.GetAxis("Horizontal");

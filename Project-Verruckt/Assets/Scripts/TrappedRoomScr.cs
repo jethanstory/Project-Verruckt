@@ -7,24 +7,35 @@ public class TrappedRoomScr : MonoBehaviour
 {
 
     public bool playerStuck = false;
+    public bool playerMerge = false;
     public bool canBeStuck = false;
+    public bool canBeMerged = false;
 
     public GameObject fpsPlayer;
 
     public GameObject loseCanvas;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject loseCanvasMerged;
+    public GameObject gameOverSound;
 
-    // Update is called once per frame
     void Update()
     {
         TrappedRoom();
+        MergeArea();
         if (playerStuck)
         {
+            //gameOverSound.SetActive(false);
+            gameOverSound.SetActive(true);
             loseCanvas.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            //SceneManager.LoadScene("GameOver");
+        }
+        if (playerMerge)
+        {
+            //gameOverSound.SetActive(false);
+            gameOverSound.SetActive(true);
+            loseCanvasMerged.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
@@ -32,26 +43,52 @@ public class TrappedRoomScr : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "DoorStuck") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "DoorStuck")
         {
-           canBeStuck = true;
-            
+            canBeStuck = true;
+
+        }
+        if (other.gameObject.tag == "DodgyPillsKillArea")
+        {
+            canBeMerged = true;
+
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        canBeStuck = false; 
-     
+        if (other.gameObject.tag == "DoorStuck")
+        {
+            canBeStuck = false;
+        }
+        if (other.gameObject.tag == "DodgyPillsKillArea")
+        {
+            canBeMerged = false;
+
+        }
     }
 
-    void TrappedRoom() {
-        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck) {
+    void TrappedRoom()
+    {
+        if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck && fpsPlayer.GetComponent<PickUpObject>().totalPillsTaken > 0) // == fpsPlayer.GetComponent<PickUpObject>().pillsCollected)
+        {
             playerStuck = true;
         }
-        else {
+        else
+        {
             playerStuck = false;
+        }
+    }
+    void MergeArea()
+    {
+        if (!fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
+        {
+            playerMerge = true;
+        }
+        else
+        {
+            playerMerge = false;
         }
     }
 

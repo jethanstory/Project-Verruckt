@@ -22,17 +22,15 @@ public class DodgyPillScr : MonoBehaviour
     public GameObject viewSource;
     public GameObject torchObject;
     GameObject ObjectIwantToDestroy;
+    public GameObject harmlessHalluc;
 
     public GameObject fpsPlayer;
 
     public int dPillsCollected;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public int maxDodgyPillsCollected;
+    public int dPillsTotalTaken;
 
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V) && dPillsCollected >= 1)
@@ -48,6 +46,8 @@ public class DodgyPillScr : MonoBehaviour
             torchObject.SetActive(false);
             randSetTime = Random.Range(0f, 1f);
             cinematicSound.SetActive(true);
+
+            harmlessHalluc.SetActive(true);
 
             if (endPillTime < 30)
             {
@@ -102,6 +102,9 @@ public class DodgyPillScr : MonoBehaviour
                 cinematicSound.SetActive(false);
                 cinematicSoundFast.SetActive(false);
                 dPillsCollected -= 1;
+                dPillsTotalTaken += 1;
+
+                harmlessHalluc.SetActive(false);
             }
 
         }
@@ -140,11 +143,10 @@ public class DodgyPillScr : MonoBehaviour
         //randChangeTime = Random.Range(0f, 1f);
     }
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "DodgyPills") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "DodgyPills")
         {
-            //canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
             dPillsCollected += 1;
@@ -154,7 +156,7 @@ public class DodgyPillScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        //canpickup = false; //when you leave the collider set the canpickup bool to false
+
     }
 
 }

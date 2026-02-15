@@ -6,7 +6,7 @@ public class ClockTickScr : MonoBehaviour
 {
 
     float secondsCount = 0;
-    
+
     public GameObject clockStart;
     public GameObject clockRun;
     public GameObject clockRunFast;
@@ -14,29 +14,31 @@ public class ClockTickScr : MonoBehaviour
 
     public GameObject fpsPlayer;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         checkPills();
     }
 
-    void checkPills() {
-        if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
+    void checkPills()
+    {
+        if (fpsPlayer.GetComponent<PickUpObject>().isViewing)
+        {
 
             secondsCount += Time.deltaTime;
             clockStart.SetActive(true);
 
-            if (secondsCount > 0.5) 
+            if (secondsCount > 0.5)
             {
                 clockStart.SetActive(false);
                 clockRun.SetActive(true);
-                if (secondsCount >= 20 && !fpsPlayer.GetComponent<PickUpObject>().doublePilled) 
+                if (secondsCount >= 20 && !fpsPlayer.GetComponent<PickUpObject>().doublePilled)
                 {
                     clockRun.SetActive(false);
                     clockRunFast.SetActive(true);
@@ -44,7 +46,7 @@ public class ClockTickScr : MonoBehaviour
                     {
                         clockEnd.SetActive(false);
                         clockEnd.SetActive(true);
-                        
+
                     }
                 }
 
@@ -70,7 +72,7 @@ public class ClockTickScr : MonoBehaviour
                     {
                         clockEnd.SetActive(false);
                         clockEnd.SetActive(true);
-                        
+
                     }
                 }
             }
@@ -92,7 +94,7 @@ public class ClockTickScr : MonoBehaviour
         //             {
         //                 clockEnd.SetActive(false);
         //                 clockEnd.SetActive(true);
-                        
+
         //             }
         //         }
         //     }
@@ -101,6 +103,6 @@ public class ClockTickScr : MonoBehaviour
         {
             clockRunFast.SetActive(false);
             secondsCount = 0;
-        } 
+        }
     }
 }
