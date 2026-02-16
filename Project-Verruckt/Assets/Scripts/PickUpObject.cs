@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PickUpObject : MonoBehaviour
@@ -72,6 +73,10 @@ public class PickUpObject : MonoBehaviour
     public bool fadeIn;
 
     public GameObject gameOverSound;
+
+    public Text Txt;
+
+    public string defaultPillTxt = " ";
 
     //public Collider sphereColl;
     // Start is called before the first frame update
@@ -284,6 +289,19 @@ public class PickUpObject : MonoBehaviour
             // }
 
         }
+
+        if (fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        {
+            Txt = GameObject.Find("PillNumber").GetComponent<Text>();
+            Txt.text = pillsCollected.ToString();
+        }
+
+        if (!fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        {
+            Txt = GameObject.Find("PillNumber").GetComponent<Text>();
+            Txt.text = defaultPillTxt;
+        }
+
         else
         {
             //_postProcessVolume.weight = 0;
