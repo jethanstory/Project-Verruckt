@@ -111,6 +111,7 @@ public class DodgyPillScr : MonoBehaviour
         else
         {
             endPillTime = 0;
+            inBetweenSwapTime = 0;
             if (!fpsPlayer.GetComponent<PickUpObject>().isViewing)
             {
                 torchObject.SetActive(true);
