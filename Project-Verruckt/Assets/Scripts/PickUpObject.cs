@@ -24,6 +24,7 @@ public class PickUpObject : MonoBehaviour
     public GameObject shadowPerson;
     public GameObject realObjects;
     public GameObject otherObjects;
+    public GameObject pressEText;
     public bool notColor = false;
     public bool canPill = false;
     public bool isViewing = false;
@@ -57,6 +58,8 @@ public class PickUpObject : MonoBehaviour
     public GameObject cinematicSound;
 
     public bool pickedUpClock;
+
+    public bool canPickUpPill;
 
     public PostProcessVolume _postProcessVolume;
 
@@ -121,6 +124,18 @@ public class PickUpObject : MonoBehaviour
 
         //     //}
         // }
+        if (canPickUpPill && Input.GetKeyDown(KeyCode.E))
+        {
+            //canpickup = true;  //set the pick up bool to true
+            if (ObjectIwantToDestroy != null)
+                Destroy(ObjectIwantToDestroy);
+            pillsCollected += 1;
+            pillSound.SetActive(false);
+            pillSound.SetActive(true);
+            hasItem = true;
+            pressEText.SetActive(false);
+            canPickUpPill = false;
+        }
 
         //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock)
         //if (objectCheck.GetComponent<PlayerClockCheck>().hasClock)
@@ -317,21 +332,19 @@ public class PickUpObject : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other) // to see when the player enters the collider
+    private void OnTriggerEnter(Collider other) // to see when the player enters the collider //OnTriggerStay
     {
         if (other.gameObject.tag == "Pills") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
-            //canpickup = true;  //set the pick up bool to true
+            pressEText.SetActive(true);
+            canPickUpPill = true;
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
-            Destroy(ObjectIwantToDestroy);
-            pillsCollected += 1;
-            pillSound.SetActive(false);
-            pillSound.SetActive(true);
-            hasItem = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        pressEText.SetActive(false);
+        canPickUpPill = false;
         //canpickup = false; //when you leave the collider set the canpickup bool to false
     }
 

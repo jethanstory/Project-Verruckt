@@ -16,6 +16,13 @@ public class TrappedRoomScr : MonoBehaviour
     public GameObject loseCanvas;
     public GameObject loseCanvasMerged;
     public GameObject gameOverSound;
+    string sceneName;
+
+    void Start()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
+    }
 
     void Update()
     {
@@ -82,7 +89,7 @@ public class TrappedRoomScr : MonoBehaviour
     }
     void MergeArea()
     {
-        if (!fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
+        if (sceneName == "labSceneRedone" && !fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
         {
             playerMerge = true;
         }
