@@ -11,7 +11,6 @@ public class TempCreditsDemoScr : MonoBehaviour
         Cursor.visible = true;
     }
 
-
     void Update()
     {
         GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock = false;

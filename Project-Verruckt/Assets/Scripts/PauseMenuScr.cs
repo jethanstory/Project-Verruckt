@@ -33,7 +33,6 @@ public class PauseMenuScr : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuCanvas.SetActive(true);
-
         }
     }
 }

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PickupRadio : MonoBehaviour
 {
-
     public GameObject myHands;
     bool canpickup;
     GameObject ObjectIwantToPickUp;
-
     public GameObject radio;
 
 
@@ -22,7 +20,6 @@ public class PickupRadio : MonoBehaviour
         if (canpickup == true) // if you enter thecollider of the objecct
         {
             //Debug.Log("HIT");
-
 
             //sphereColl.enabled = !sphereColl.enabled;
             //if (Input.GetKeyDown("e"))  // can be e or any key
@@ -57,6 +54,5 @@ public class PickupRadio : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         canpickup = false;
-
     }
 }

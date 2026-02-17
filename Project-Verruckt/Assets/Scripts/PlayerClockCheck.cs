@@ -6,7 +6,6 @@ public class PlayerClockCheck : MonoBehaviour
 {
     public bool hasClock;
 
-
     void Start()
     {
         DontDestroyOnLoad(transform.gameObject);

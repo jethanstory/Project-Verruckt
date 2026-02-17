@@ -5,10 +5,8 @@ using UnityEngine;
 public class ClockTextScr : MonoBehaviour
 {
     float secondsCount = 0;
-
     public GameObject textControls;
     public GameObject textGoal;
-
     public GameObject fpsPlayer;
 
 
@@ -28,11 +26,6 @@ public class ClockTextScr : MonoBehaviour
             if (secondsCount > 5)
             {
                 textControls.SetActive(false);
-                // textGoal.SetActive(true);
-                // if (secondsCount > 10)
-                // {
-                //     textGoal.SetActive(false);
-                // }
             }
         }
     }

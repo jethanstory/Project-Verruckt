@@ -9,34 +9,25 @@ public class PickupSyringeScr : MonoBehaviour
     public GameObject pickupSound;
     GameObject ObjectIwantToDestroy;
     public float secondsCount;
-
     public GameObject playerSyringe;
     public GameObject textDisplay;
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
+    { }
     // Update is called once per frame
     void Update()
-    {
-        //syringeText();
-    }
+    { }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Syringe")
         {
-            //canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
             Destroy(ObjectIwantToDestroy);
             syringeCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
             playerSyringe.SetActive(true);
-            //syringeText();
-
         }
     }
     private void OnTriggerExit(Collider other)

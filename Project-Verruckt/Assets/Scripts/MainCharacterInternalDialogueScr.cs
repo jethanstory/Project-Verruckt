@@ -65,6 +65,5 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
                 dialogueBox.SetActive(true);
             }
         }
-
     }
 }

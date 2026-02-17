@@ -6,28 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class PickupNoteScr : MonoBehaviour
 {
-
-    public GameObject myHands; //reference to your hands/the position where you want your object to go
-    // bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToPickUp; // the gameobject onwhich you collided with
-    bool hasItem; // a bool to see if you have an item in your hand
-
     public GameObject notesCanvas;
+    public GameObject noteSecondCanvas;
     public bool activeCanvas;
     public GameObject infoText;
     public GameObject fpsPlayer;
-
     public Text Txt;
-
     string sceneName;
-
     bool pickedSubsequentNote = false;
-
-
-
-
-    public GameObject noteSecondCanvas;
-
 
     void Start()
     {
@@ -35,32 +22,13 @@ public class PickupNoteScr : MonoBehaviour
         sceneName = scene.name;
     }
 
-
     void Update()
-    {
-        //if(canpickup == true && Input.GetMouseButtonDown(0)) // if you enter thecollider of the objecct Input.GetKeyDown(KeyCode.N)
-        // canpickup = false;
-        // ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;   //makes the rigidbody not be acted upon by forces
-        // ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
-        // ObjectIwantToPickUp.transform.rotation = myHands.transform.rotation; // sets the position of the object to your hand position
-        // ObjectIwantToPickUp.transform.parent = myHands.transform; //makes the object become a child of the parent so that it moves with the hands  
-        //}
-        // else if (canpickup == false && Input.GetMouseButtonDown(0))
-        // {
-        //     notePad.SetActive(false);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.N))
-        // {
-        //     checkNotes();
-        // }
-    }
+    { }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PickUpNote")
         {
-            // canpickup = true;
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
             //infoText.SetActive(true);
             notesCanvas.SetActive(true);
@@ -90,8 +58,6 @@ public class PickupNoteScr : MonoBehaviour
                     Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
                 }
             }
-
-
         }
 
         if (other.gameObject.tag == "PickUpSecondNote")
@@ -126,10 +92,8 @@ public class PickupNoteScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        // canpickup = false;
         //infoText.SetActive(false);
         notesCanvas.SetActive(false);
-
     }
 
     public void checkNotes()
@@ -149,8 +113,6 @@ public class PickupNoteScr : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             notesCanvas.SetActive(true);
-
         }
     }
-
 }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PickupClockScr : MonoBehaviour
 {
-
     public bool hasClock;
     string sceneName;
     GameObject ObjectIwantToDestroy;

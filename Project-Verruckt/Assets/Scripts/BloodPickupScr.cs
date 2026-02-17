@@ -6,14 +6,9 @@ public class BloodPickupScr : MonoBehaviour
 {
     public bool bloodCollected;
     public GameObject pickupSound;
-    //GameObject ObjectIwantToDestroy;
-
-    //public GameObject playerSyringe;
 
     void Update()
-    {
-        //syringeText();
-    }
+    { }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,13 +17,8 @@ public class BloodPickupScr : MonoBehaviour
             bloodCollected = true;
             pickupSound.SetActive(false);
             pickupSound.SetActive(true);
-            //playerSyringe.SetActive(true);
-            //syringeText();
-
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-        //textDisplay.SetActive(false);
-    }
+    { }
 }

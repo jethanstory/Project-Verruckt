@@ -5,10 +5,8 @@ using UnityEngine;
 public class PickupFlashlightScr : MonoBehaviour
 {
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
-
     //public GameObject flashLightSource;
     public GameObject flashLightPlayer;
-
     public bool flashLightCollected;
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +23,5 @@ public class PickupFlashlightScr : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-
-    }
+    { }
 }

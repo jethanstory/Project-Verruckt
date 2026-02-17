@@ -18,18 +18,11 @@ public class PillEffectsExperimentalTransitionScr : MonoBehaviour
     public bool fadeInTime;
 
     public float finalTime;
-
     public bool hasTimed = false;
-
     public GameObject fpsPlayer;
 
-
-
     void Start()
-    {
-
-    }
-
+    { }
 
     void Update()
     {

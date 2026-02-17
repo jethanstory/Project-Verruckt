@@ -347,5 +347,4 @@ public class PickUpObject : MonoBehaviour
         canPickUpPill = false;
         //canpickup = false; //when you leave the collider set the canpickup bool to false
     }
-
 }

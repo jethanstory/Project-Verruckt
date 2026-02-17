@@ -26,15 +26,11 @@ public class PickupKeyScr : MonoBehaviour
     void Update()
     {
         if (canpickup == true) // if you enter thecollider of the objecct
-        {
-
-
-        }
+        { }
         if (keysCollected >= maxKeys)
         {
             canUnlock = true;
         }
-
     }
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
@@ -64,7 +60,5 @@ public class PickupKeyScr : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         canpickup = false; //when you leave the collider set the canpickup bool to false
-
     }
-
 }

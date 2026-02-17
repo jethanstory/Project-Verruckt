@@ -7,15 +7,10 @@ public class UnknownHelperScr : MonoBehaviour
     public GameObject firstHelperItem;
 
     void Start()
-    {
-
-    }
-
+    { }
 
     void Update()
-    {
-
-    }
+    { }
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
@@ -25,8 +20,5 @@ public class UnknownHelperScr : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-
-
-    }
+    { }
 }

@@ -10,21 +10,13 @@ public class PlayerCollision : MonoBehaviour
     void OnCollisionEnter(UnityEngine.Collision collisionInfo)
     {
         if (collisionInfo.collider.name == "Enemy" || collisionInfo.collider.name == "WanderingEnemy" || collisionInfo.collider.name == "flyingEnemy" || collisionInfo.collider.name == "longOne" || collisionInfo.collider.name == "enemyCorrupt")
-
         {
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(2);
             Debug.Log("HIT");
-
         }
-
     }
-
 
     void Update()
-    {
-
-    }
+    { }
 }
-
-/*|| collisionInfo.collider.name == "longOne" || collisionInfo.collider.name == "watcherEnemy" */

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class NavMeshRun : MonoBehaviour
 {
-
     //private Transform player;
     private NavMeshAgent myNMagent;
     private float nextTurnTime;
@@ -23,12 +22,9 @@ public class NavMeshRun : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //player = GameObject.FindGameObjectWithTag("thrownFlare").transform;
         myNMagent = GetComponent<NavMeshAgent>();
         canRun = false;
-
-
 
         //RunFrom ();
     }
@@ -36,10 +32,8 @@ public class NavMeshRun : MonoBehaviour
 
     void Update()
     {
-
         if (canRun == true) // if you enter thecollider of the objecct
         {
-
             // used for testing - can be ignored
             if (Time.time > nextTurnTime)
                 myNMagent.speed = speed;
@@ -49,8 +43,6 @@ public class NavMeshRun : MonoBehaviour
             GameObject.Find("WanderingEnemy").GetComponent<WanderingEnemyAI>().enabled = false;
             RunFrom();
         }
-
-
     }
     /*
         public void RunFrom()

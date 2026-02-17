@@ -55,12 +55,10 @@ public class TrappedRoomScr : MonoBehaviour
         if (other.gameObject.tag == "DoorStuck")
         {
             canBeStuck = true;
-
         }
         if (other.gameObject.tag == "DodgyPillsKillArea")
         {
             canBeMerged = true;
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -72,7 +70,6 @@ public class TrappedRoomScr : MonoBehaviour
         if (other.gameObject.tag == "DodgyPillsKillArea")
         {
             canBeMerged = false;
-
         }
     }
 
@@ -98,6 +95,4 @@ public class TrappedRoomScr : MonoBehaviour
             playerMerge = false;
         }
     }
-
-
 }

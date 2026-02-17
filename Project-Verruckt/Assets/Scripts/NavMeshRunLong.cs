@@ -11,9 +11,7 @@ public class NavMeshRunLong : MonoBehaviour
     private float nextTurnTime;
     private Transform startTransform;
     bool canRun;
-
     public Transform player;
-
     public float multiplyBy;
     public float damping;
 
@@ -23,23 +21,16 @@ public class NavMeshRunLong : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //player = GameObject.FindGameObjectWithTag("thrownFlare").transform;
         myNMagent = GetComponent<NavMeshAgent>();
         canRun = false;
-
-
-
         //RunFrom ();
     }
 
-
     void Update()
     {
-
         if (canRun == true) // if you enter thecollider of the objecct
         {
-
             // used for testing - can be ignored
             if (Time.time > nextTurnTime)
                 myNMagent.speed = speed;
@@ -49,8 +40,6 @@ public class NavMeshRunLong : MonoBehaviour
             GameObject.Find("longOne").GetComponent<enemyAInoLight>().enabled = false;
             RunFrom();
         }
-
-
     }
     /*
         public void RunFrom()

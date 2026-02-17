@@ -6,7 +6,6 @@ public class RotateLightScr : MonoBehaviour
 {
     private Vector3 rotation;
     public float speed;
-
     public bool isRandom;
 
 
@@ -14,7 +13,6 @@ public class RotateLightScr : MonoBehaviour
     {
         rotation = Vector3.up;
     }
-
 
     void Update()
     {

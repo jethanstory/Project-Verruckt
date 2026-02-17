@@ -33,7 +33,6 @@ public class PickupNoteAdvScr : MonoBehaviour
         sceneName = scene.name;
     }
 
-
     void Update()
     {
         //if(canpickup == true && Input.GetMouseButtonDown(0)) // if you enter thecollider of the objecct Input.GetKeyDown(KeyCode.N)
@@ -86,8 +85,6 @@ public class PickupNoteAdvScr : MonoBehaviour
                     Txt.text = "Ron, \n \n Did you take my key? I can't find it anywhere. \n \n - Becky";
                 }
             }
-
-
         }
 
         if (other.gameObject.tag == "PickUpSecondNote")
@@ -115,8 +112,6 @@ public class PickupNoteAdvScr : MonoBehaviour
                 Txt = GameObject.Find("SecondNoteText").GetComponent<Text>();
                 Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
             }
-
-
         }
 
         if (numNotes >= 3)
@@ -144,8 +139,6 @@ public class PickupNoteAdvScr : MonoBehaviour
                     // Txt = GameObject.Find ("NoteText").GetComponent<Text> ();
                     // Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
                 }
-
-
             }
         }
         // if(other.gameObject.tag == "PickUpThirdNote") //on the object you want to pick up set the tag to be anything, in this case "object"
@@ -186,7 +179,6 @@ public class PickupNoteAdvScr : MonoBehaviour
         {
             noteThirdCanvas.SetActive(false);
         }
-
     }
 
     public void checkNotes()
@@ -206,7 +198,6 @@ public class PickupNoteAdvScr : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             notesCanvas.SetActive(true);
-
         }
     }
 }
