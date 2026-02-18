@@ -11,6 +11,9 @@ public class PickupClockScr : MonoBehaviour
     public GameObject objectCheck;
     public GameObject pickupClockSound;
 
+    public GameObject pickupClockPressText;
+    public bool pickupClockTrigger;
+
 
     void Start()
     {
@@ -36,6 +39,14 @@ public class PickupClockScr : MonoBehaviour
         {
             GameObject.Find("First Person Player").GetComponent<ClockTickScr>().enabled = true;
         }
+        if (pickupClockTrigger && Input.GetKeyDown(KeyCode.E))
+        {
+            if (ObjectIwantToDestroy != null)
+                Destroy(ObjectIwantToDestroy);
+            GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock = true;
+            pickupClockSound.SetActive(true);
+            pickupClockPressText.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,11 +54,15 @@ public class PickupClockScr : MonoBehaviour
         if (other.gameObject.tag == "Clock")
         {
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
-            Destroy(ObjectIwantToDestroy);
+            pickupClockPressText.SetActive(true);
+            pickupClockTrigger = true;
             // objectCheck.GetComponent<PlayerClockCheck>().hasClock = true;
-            GameObject.Find("ClockCheckObject").GetComponent<PlayerClockCheck>().hasClock = true;
-            pickupClockSound.SetActive(true);
             //hasClock = true;
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        pickupClockTrigger = false;
+        pickupClockPressText.SetActive(false);
     }
 }
