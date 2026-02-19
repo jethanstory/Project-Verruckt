@@ -19,6 +19,16 @@ public class PickupNoteAdvScr : MonoBehaviour
     public Text Txt;
     public int numNotes;
 
+    public GameObject noteCopiedText;
+    public GameObject noteOpenFirstTime;
+    public float secondsCountCopiedText = 0;
+    float secondsCountFirstTime = 0;
+    bool triggeredNote = false;
+    bool hasBeenCopiedFirst = false;
+    bool hasBeenCopiedSecond = false;
+    bool hasBeenCopiedthird = false;
+    bool openNoteFirstTimeBool = false;
+
     string sceneName;
 
     // bool pickedSubsequentNote = false;
@@ -47,16 +57,56 @@ public class PickupNoteAdvScr : MonoBehaviour
         //     notePad.SetActive(false);
         // }
 
-        // if (Input.GetKeyDown(KeyCode.N))
+        if (openNoteFirstTimeBool)
+        {
+            secondsCountFirstTime += Time.deltaTime;
+            noteOpenFirstTime.SetActive(true);
+            if (secondsCountFirstTime > 10)
+            {
+                noteOpenFirstTime.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            checkNotes();
+        }
+
+        if (triggeredNote && (!hasBeenCopiedFirst || !hasBeenCopiedSecond))
+        {
+            // secondsCountCopiedText = 0;
+            secondsCountCopiedText += Time.deltaTime;
+            noteCopiedText.SetActive(true);
+            if (secondsCountCopiedText > 2.5)
+            {
+                noteCopiedText.SetActive(false);
+            }
+        }
+        // else if (triggeredNote && !hasBeenCopiedSecond)
         // {
-        //     checkNotes();
+        //     // secondsCountCopiedText = 0;
+        //     secondsCountCopiedText += Time.deltaTime;
+        //     noteCopiedText.SetActive(true);
+        //     if (secondsCountCopiedText > 2.5)
+        //     {
+        //         noteCopiedText.SetActive(false);
+        //     }
         // }
+        else if (secondsCountCopiedText == 0)
+        {
+            noteCopiedText.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PickUpNote")
         {
+            if (!openNoteFirstTimeBool)
+            {
+                openNoteFirstTimeBool = true;
+            }
+            triggeredNote = true;
             // canpickup = true;
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
             //infoText.SetActive(true);
@@ -89,8 +139,13 @@ public class PickupNoteAdvScr : MonoBehaviour
 
         if (other.gameObject.tag == "PickUpSecondNote")
         {
+            if (!openNoteFirstTimeBool)
+            {
+                openNoteFirstTimeBool = true;
+            }
             // pickedSubsequentNote = true;
             // canpickup = true;
+            triggeredNote = true;
             ObjectIwantToPickUp = other.gameObject;
             //infoText.SetActive(true);
 
@@ -174,10 +229,23 @@ public class PickupNoteAdvScr : MonoBehaviour
         //infoText.SetActive(false);
         notesCanvas.SetActive(false);
         noteSecondCanvas.SetActive(false);
+        secondsCountCopiedText = 0;
+        triggeredNote = false;
+        // shasBeenCopied = true;
+
+
 
         if (numNotes >= 3)
         {
             noteThirdCanvas.SetActive(false);
+        }
+        if (other.gameObject.tag == "PickUpNote")
+        {
+            hasBeenCopiedFirst = true;
+        }
+        else if (other.gameObject.tag == "PickUpSecondNote")
+        {
+            hasBeenCopiedSecond = true;
         }
     }
 
