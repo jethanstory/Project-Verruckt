@@ -67,7 +67,7 @@ public class PickupNoteAdvScr : MonoBehaviour
         //     notePad.SetActive(false);
         // }
 
-        if (openNoteFirstTimeBool)
+        if (openNoteFirstTimeBool) // hint to show how to open notebook
         {
             secondsCountFirstTime += Time.deltaTime;
             noteOpenFirstTime.SetActive(true);
@@ -77,12 +77,12 @@ public class PickupNoteAdvScr : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && !fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        if (Input.GetKeyDown(KeyCode.N) && !fpsPlayer.GetComponent<PauseMenuScr>().activeMenu) // show notebook on 'N' press
         {
             checkNotes();
         }
 
-        if (triggeredNote && (!hasBeenCopiedFirst || !hasBeenCopiedSecond))
+        if (triggeredNote && (!hasBeenCopiedFirst || !hasBeenCopiedSecond)) // show Copied to Notes text if the note hasn't already been picked up
         {
             // secondsCountCopiedText = 0;
             secondsCountCopiedText += Time.deltaTime;
@@ -102,7 +102,7 @@ public class PickupNoteAdvScr : MonoBehaviour
         //         noteCopiedText.SetActive(false);
         //     }
         // }
-        else if (secondsCountCopiedText == 0)
+        else if (secondsCountCopiedText == 0) // if note trigger has been left and seconds counter reset, set copied text inactive
         {
             noteCopiedText.SetActive(false);
         }
@@ -138,7 +138,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
             //     notesCanvas.SetActive(false);
             // }
-            if (fpsPlayer.GetComponent<PickupKeyScr>().firstKeyCollected)
+            if (fpsPlayer.GetComponent<PickupKeyScr>().firstKeyCollected) // swap text of notes when keys are collected
             {
                 Txt = GameObject.Find("NoteText").GetComponent<Text>();
                 if (sceneName == "HallsStart")
@@ -150,16 +150,14 @@ public class PickupNoteAdvScr : MonoBehaviour
 
         if (other.gameObject.tag == "PickUpSecondNote")
         {
-            if (!openNoteFirstTimeBool)
+            if (!openNoteFirstTimeBool) // show hint for opening notebook on first note pickup
             {
                 openNoteFirstTimeBool = true;
             }
             // pickedSubsequentNote = true;
-            // canpickup = true;
             secondNoteTaken = true;
             triggeredNote = true;
             ObjectIwantToPickUp = other.gameObject;
-            //infoText.SetActive(true);
 
             noteSecondCanvas.SetActive(true);
             //Txt = GameObject.Find ("SecondNoteText").GetComponent<Text> ();
@@ -174,7 +172,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             // if (fpsPlayer.GetComponent<PickUpObject>().isViewing) {
             // notesCanvas.SetActive(false);
             // }
-            if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected)
+            if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected) // swap text of notes when keys are collected
             {
                 Txt = GameObject.Find("SecondNoteText").GetComponent<Text>();
                 if (sceneName == "HallsStart")
@@ -184,7 +182,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             }
         }
 
-        if (numNotes >= 3)
+        if (numNotes >= 3) // if more than 3 notes in level
         {
             if (other.gameObject.tag == "PickUpThirdNote")
             {
@@ -240,33 +238,30 @@ public class PickupNoteAdvScr : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        // canpickup = false;
-        //infoText.SetActive(false);
         notesCanvas.SetActive(false);
         noteSecondCanvas.SetActive(false);
         secondsCountCopiedText = 0;
         triggeredNote = false;
-        // shasBeenCopied = true;
 
 
 
-        if (numNotes >= 3)
+        if (numNotes >= 3) // if more than 3 notes in level
         {
             noteThirdCanvas.SetActive(false);
         }
-        if (other.gameObject.tag == "PickUpNote")
+        if (other.gameObject.tag == "PickUpNote") // if first note has been copied
         {
             hasBeenCopiedFirst = true;
         }
-        else if (other.gameObject.tag == "PickUpSecondNote")
+        else if (other.gameObject.tag == "PickUpSecondNote") // if second note has been copied
         {
             hasBeenCopiedSecond = true;
         }
     }
 
-    public void checkNotes()
+    public void checkNotes() // Notebook brought up by pressing 'N'
     {
-        if (activeCanvas) // || fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        if (activeCanvas)
         {
             activeCanvas = false;
             Time.timeScale = 1;
@@ -284,7 +279,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             Cursor.visible = true;
             savedNotesCanvas.SetActive(true);
             backButton.SetActive(false);
-            if (firstNoteTaken)
+            if (firstNoteTaken) // show button if note has been picked up
                 firstNoteButton.SetActive(true);
             if (secondNoteTaken)
                 secondNoteButton.SetActive(true);
