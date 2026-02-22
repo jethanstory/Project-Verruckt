@@ -72,10 +72,13 @@ public class PickupNoteAdvScr : MonoBehaviour
         if (openNoteFirstTimeBool) // hint to show how to open notebook
         {
             secondsCountFirstTime += Time.deltaTime;
-            noteOpenFirstTime.SetActive(true);
-            if (secondsCountFirstTime > 10)
+            if (secondsCountFirstTime > 5)
             {
-                noteOpenFirstTime.SetActive(false);
+                noteOpenFirstTime.SetActive(true);
+                if (secondsCountFirstTime > 10)
+                {
+                    noteOpenFirstTime.SetActive(false);
+                }
             }
         }
 
