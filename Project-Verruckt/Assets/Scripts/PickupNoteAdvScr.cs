@@ -32,9 +32,11 @@ public class PickupNoteAdvScr : MonoBehaviour
     public GameObject backButton;
     public GameObject firstNoteButton;
     public GameObject secondNoteButton;
+    public GameObject thirdNoteButton;
 
     bool firstNoteTaken;
     bool secondNoteTaken;
+    bool thirdNoteTaken;
 
 
     public GameObject savedNotesCanvas;
@@ -189,7 +191,8 @@ public class PickupNoteAdvScr : MonoBehaviour
                 // canpickup = true;
                 ObjectIwantToPickUp = other.gameObject;
                 //infoText.SetActive(true);
-
+                thirdNoteTaken = true;
+                triggeredNote = true;
                 noteThirdCanvas.SetActive(true);
                 Txt = GameObject.Find("ThirdNoteText").GetComponent<Text>();
                 // if (sceneName == "HallsStart") {
@@ -257,7 +260,11 @@ public class PickupNoteAdvScr : MonoBehaviour
         {
             hasBeenCopiedSecond = true;
         }
-    }
+        if ((other.gameObject.tag == "PickUpThirdNote") && numNotes >= 3) // if more than 3 notes in level
+        {
+            hasBeenCopiedThird = true;
+        }
+        }
 
     public void checkNotes() // Notebook brought up by pressing 'N'
     {
@@ -283,12 +290,15 @@ public class PickupNoteAdvScr : MonoBehaviour
                 firstNoteButton.SetActive(true);
             if (secondNoteTaken)
                 secondNoteButton.SetActive(true);
+            if (thirdNoteTaken)
+                thirdNoteButton.SetActive(true);
         }
     }
     public void firstNoteDisplay() // Display first note on button push in Notes Menu
     {
         firstNoteButton.SetActive(false);
         secondNoteButton.SetActive(false);
+        thirdNoteButton.SetActive(false);
         notesCanvas.SetActive(true);
         backButton.SetActive(true);
         if (!activeCanvas)
@@ -301,6 +311,7 @@ public class PickupNoteAdvScr : MonoBehaviour
     {
         firstNoteButton.SetActive(false);
         secondNoteButton.SetActive(false);
+        thirdNoteButton.SetActive(false);
         noteSecondCanvas.SetActive(true);
         backButton.SetActive(true);
         if (!activeCanvas)
@@ -309,15 +320,31 @@ public class PickupNoteAdvScr : MonoBehaviour
         }
     }
 
+    public void thirdNoteDisplay() // Display first note on button push in Notes Menu
+    {
+        firstNoteButton.SetActive(false);
+        secondNoteButton.SetActive(false);
+        thirdNoteButton.SetActive(false);
+        noteThirdCanvas.SetActive(true);
+        backButton.SetActive(true);
+        if (!activeCanvas)
+        {
+            noteThirdCanvas.SetActive(false);
+        }
+    }
+
     public void backButtonNotes() // Go back to button menu
     {
         notesCanvas.SetActive(false);
         noteSecondCanvas.SetActive(false);
+        noteThirdCanvas.SetActive(false);
         backButton.SetActive(false);
         if (firstNoteTaken)
             firstNoteButton.SetActive(true);
         if (secondNoteTaken)
             secondNoteButton.SetActive(true);
+        if (thirdNoteTaken)
+            thirdNoteButton.SetActive(true);
         if (!activeCanvas)
         {
             notesCanvas.SetActive(false);
