@@ -6,6 +6,8 @@ public class PauseMenuScr : MonoBehaviour
 {
 
     public GameObject menuCanvas;
+
+    public GameObject fpsPlayer;
     public bool activeMenu;
 
     void Update()
@@ -18,7 +20,7 @@ public class PauseMenuScr : MonoBehaviour
 
     public void checkMenu()
     {
-        if (activeMenu)
+        if (activeMenu) //|| fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             activeMenu = false;
             Time.timeScale = 1;
@@ -26,7 +28,7 @@ public class PauseMenuScr : MonoBehaviour
             Cursor.visible = false;
             menuCanvas.SetActive(false);
         }
-        else
+        else if (!activeMenu && !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             activeMenu = true;
             Time.timeScale = 0;

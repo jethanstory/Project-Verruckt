@@ -26,8 +26,18 @@ public class PickupNoteAdvScr : MonoBehaviour
     bool triggeredNote = false;
     bool hasBeenCopiedFirst = false;
     bool hasBeenCopiedSecond = false;
-    bool hasBeenCopiedthird = false;
+    bool hasBeenCopiedThird = false;
     bool openNoteFirstTimeBool = false;
+
+    public GameObject backButton;
+    public GameObject firstNoteButton;
+    public GameObject secondNoteButton;
+
+    bool firstNoteTaken;
+    bool secondNoteTaken;
+
+
+    public GameObject savedNotesCanvas;
 
     string sceneName;
 
@@ -106,6 +116,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             {
                 openNoteFirstTimeBool = true;
             }
+            firstNoteTaken = true;
             triggeredNote = true;
             // canpickup = true;
             ObjectIwantToPickUp = other.gameObject; //set the gameobject you collided with to one you can reference
@@ -145,6 +156,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             }
             // pickedSubsequentNote = true;
             // canpickup = true;
+            secondNoteTaken = true;
             triggeredNote = true;
             ObjectIwantToPickUp = other.gameObject;
             //infoText.SetActive(true);
@@ -251,21 +263,66 @@ public class PickupNoteAdvScr : MonoBehaviour
 
     public void checkNotes()
     {
-        if (activeCanvas)
+        if (activeCanvas) // || fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
         {
             activeCanvas = false;
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            savedNotesCanvas.SetActive(false);
             notesCanvas.SetActive(false);
+            noteSecondCanvas.SetActive(false);
         }
-        else
+        else if (!activeCanvas && !fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
         {
             activeCanvas = true;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            notesCanvas.SetActive(true);
+            savedNotesCanvas.SetActive(true);
+            backButton.SetActive(false);
+            if (firstNoteTaken)
+                firstNoteButton.SetActive(true);
+            if (secondNoteTaken)
+                secondNoteButton.SetActive(true);
+        }
+    }
+    public void firstNoteDisplay() // Display first note on button push in Notes Menu
+    {
+        firstNoteButton.SetActive(false);
+        secondNoteButton.SetActive(false);
+        notesCanvas.SetActive(true);
+        backButton.SetActive(true);
+        if (!activeCanvas)
+        {
+            notesCanvas.SetActive(false);
+        }
+    }
+
+    public void secondtNoteDisplay() // Display first note on button push in Notes Menu
+    {
+        firstNoteButton.SetActive(false);
+        secondNoteButton.SetActive(false);
+        noteSecondCanvas.SetActive(true);
+        backButton.SetActive(true);
+        if (!activeCanvas)
+        {
+            noteSecondCanvas.SetActive(false);
+        }
+    }
+
+    public void backButtonNotes() // Go back to button menu
+    {
+        notesCanvas.SetActive(false);
+        noteSecondCanvas.SetActive(false);
+        backButton.SetActive(false);
+        if (firstNoteTaken)
+            firstNoteButton.SetActive(true);
+        if (secondNoteTaken)
+            secondNoteButton.SetActive(true);
+        if (!activeCanvas)
+        {
+            notesCanvas.SetActive(false);
         }
     }
 }
