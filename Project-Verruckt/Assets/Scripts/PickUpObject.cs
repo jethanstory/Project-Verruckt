@@ -305,13 +305,13 @@ public class PickUpObject : MonoBehaviour
 
         }
 
-        if (fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        if (fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             Txt = GameObject.Find("PillNumber").GetComponent<Text>();
             Txt.text = pillsCollected.ToString();
         }
 
-        if (!fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        if (!fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             Txt = GameObject.Find("PillNumber").GetComponent<Text>();
             Txt.text = defaultPillTxt;

@@ -77,7 +77,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) && !fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
         {
             checkNotes();
         }
@@ -177,7 +177,10 @@ public class PickupNoteAdvScr : MonoBehaviour
             if (fpsPlayer.GetComponent<PickupKeyScr>().secondKeyCollected)
             {
                 Txt = GameObject.Find("SecondNoteText").GetComponent<Text>();
-                Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+                if (sceneName == "HallsStart")
+                {
+                    Txt.text = "Becky, \n \n I can't seem to find my key anywhere at all. Been searching around. Have you got it?  \n \n - Ron";
+                }
             }
         }
 
@@ -273,7 +276,7 @@ public class PickupNoteAdvScr : MonoBehaviour
             notesCanvas.SetActive(false);
             noteSecondCanvas.SetActive(false);
         }
-        else if (!activeCanvas && !fpsPlayer.GetComponent<PauseMenuScr>().activeMenu)
+        else if (!activeCanvas)
         {
             activeCanvas = true;
             Time.timeScale = 0;

@@ -12,7 +12,7 @@ public class PauseMenuScr : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             checkMenu();
         }
@@ -20,7 +20,7 @@ public class PauseMenuScr : MonoBehaviour
 
     public void checkMenu()
     {
-        if (activeMenu) //|| fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
+        if (activeMenu)
         {
             activeMenu = false;
             Time.timeScale = 1;
@@ -28,7 +28,7 @@ public class PauseMenuScr : MonoBehaviour
             Cursor.visible = false;
             menuCanvas.SetActive(false);
         }
-        else if (!activeMenu && !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
+        else if (!activeMenu )
         {
             activeMenu = true;
             Time.timeScale = 0;
