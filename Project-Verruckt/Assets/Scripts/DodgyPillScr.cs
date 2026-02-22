@@ -120,7 +120,7 @@ public class DodgyPillScr : MonoBehaviour
 
     }
 
-    private void InBetween()
+    private void InBetween() // flicking between the two time eras
     {
         // cinematicSoundFast.SetActive(true);
         randChangeTime = Random.Range(0f, 1f);
@@ -156,8 +156,6 @@ public class DodgyPillScr : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-
-    }
+    { }
 
 }

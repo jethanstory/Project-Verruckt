@@ -73,7 +73,7 @@ public class TrappedRoomScr : MonoBehaviour
         }
     }
 
-    void TrappedRoom()
+    void TrappedRoom() // locked or blocked room
     {
         if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck && fpsPlayer.GetComponent<PickUpObject>().totalPillsTaken > 0) // == fpsPlayer.GetComponent<PickUpObject>().pillsCollected)
         {
@@ -84,7 +84,7 @@ public class TrappedRoomScr : MonoBehaviour
             playerStuck = false;
         }
     }
-    void MergeArea()
+    void MergeArea() // area collapsed in current time
     {
         if (sceneName == "labSceneRedone" && !fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
         {

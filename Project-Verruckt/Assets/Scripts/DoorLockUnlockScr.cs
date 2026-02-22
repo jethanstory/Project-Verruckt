@@ -20,6 +20,7 @@ public class DoorLockUnlockScr : MonoBehaviour
     public bool atDoor = false;
 
     public int doorStuckCount;
+    bool doorStuckEnd;
 
 
     void Update()
@@ -28,7 +29,6 @@ public class DoorLockUnlockScr : MonoBehaviour
         {
             leaveProcedure();
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,10 +64,11 @@ public class DoorLockUnlockScr : MonoBehaviour
                 doorLockedSound.SetActive(true);
 
             }
-            if (doorStuckCount > 4) //10
+            if (doorStuckCount > 4 && !doorStuckEnd) //10
             {
                 doorStuckSound.SetActive(false);
                 doorStuckSound.SetActive(true);
+                doorStuckEnd = true;
             }
             // else
             // {
@@ -89,10 +90,7 @@ public class DoorLockUnlockScr : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-
-
-    }
+    { }
 
     void checkKey()
     {
@@ -108,7 +106,7 @@ public class DoorLockUnlockScr : MonoBehaviour
 
     void leaveProcedure()
     {
-        if (myUIGroup.alpha < 1)
+        if (myUIGroup.alpha < 1) // fade out on door trigger with key
         {
             myUIGroup.alpha += Time.deltaTime;
             if (myUIGroup.alpha >= 1)
@@ -118,5 +116,4 @@ public class DoorLockUnlockScr : MonoBehaviour
             }
         }
     }
-
 }

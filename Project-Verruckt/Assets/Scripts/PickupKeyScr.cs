@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PickupKeyScr : MonoBehaviour
 {
+    bool canpickup; //a bool to see if you can or cant pick up the item
     GameObject ObjectIwantToDestroy; // the gameobject onwhich you collided with
 
     public GameObject keySound;
 
     public int keysCollected;
-    public int maxKeys; // total keys in level
+    public int maxKeys; // total amount of keys in level
 
     public bool canUnlock;
     public bool firstKeyCollected;
@@ -26,6 +27,8 @@ public class PickupKeyScr : MonoBehaviour
 
     void Update()
     {
+        if (canpickup == true) // if you enter thecollider of the objecct
+        { }
         if (keysCollected >= maxKeys)
         {
             canUnlock = true;
