@@ -23,7 +23,7 @@ public class PickupNoteAdvScr : MonoBehaviour
     public GameObject noteOpenFirstTime;
     public float secondsCountCopiedText = 0;
     float secondsCountFirstTime = 0;
-    bool triggeredNote = false;
+    public bool triggeredNote = false;
     bool hasBeenCopiedFirst = false;
     bool hasBeenCopiedSecond = false;
     bool hasBeenCopiedThird = false;
@@ -197,7 +197,7 @@ public class PickupNoteAdvScr : MonoBehaviour
                 thirdNoteTaken = true;
                 triggeredNote = true;
                 noteThirdCanvas.SetActive(true);
-                Txt = GameObject.Find("ThirdNoteText").GetComponent<Text>();
+                // Txt = GameObject.Find("ThirdNoteText").GetComponent<Text>();
                 // if (sceneName == "HallsStart") {
                 //     Txt.text = "Becky, \n \n Retrieved the second key from the storage closet. Decided to leave the other key in room 54 and locked the door. Try to meet me in the main hall if you can. \n \n - Ron"; //+ Strength.ToString ();
                 // }
@@ -267,7 +267,7 @@ public class PickupNoteAdvScr : MonoBehaviour
         {
             hasBeenCopiedThird = true;
         }
-        }
+    }
 
     public void checkNotes() // Notebook brought up by pressing 'N'
     {

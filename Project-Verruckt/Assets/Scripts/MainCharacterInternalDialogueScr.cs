@@ -8,8 +8,10 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
 {
     public float secondsCount = 0;
     public float secondsCountPast = 0;
+    public float secondsCountHint = 0;
     string sceneName;
     bool firstTime = true;
+    bool enteredTimeShiftHint = false;
     public Text Txt;
     public GameObject dialogueBox;
     public GameObject fpsPlayer;
@@ -59,19 +61,37 @@ public class MainCharacterInternalDialogueScr : MonoBehaviour
                     dialogueBox.SetActive(false);
                 }
             }
+            if (enteredTimeShiftHint && fpsPlayer.GetComponent<PickUpObject>().isViewing)
+            {
+                secondsCountHint += Time.deltaTime;
+                Txt.text = "That's strange, the door is now open.";
+                if (secondsCountHint >= 3)
+                {
+                    Txt.text = "";
+                    dialogueBox.SetActive(false);
+                }
+            }
             if (!firstTime && fpsPlayer.GetComponent<PickUpObject>().isViewing && secondsCountPast > 1)
             {
                 secondsCountPast = 0;
                 firstTime = false;
             }
-            if (fpsPlayer.GetComponent<PauseMenuScr>().activeMenu || fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
+            if (fpsPlayer.GetComponent<PauseMenuScr>().activeMenu || fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas || fpsPlayer.GetComponent<PickupNoteAdvScr>().triggeredNote)
             {
                 dialogueBox.SetActive(false);
             }
-            else if (!fpsPlayer.GetComponent<PauseMenuScr>().activeMenu || !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
+            else if (!fpsPlayer.GetComponent<PauseMenuScr>().activeMenu || !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas || !fpsPlayer.GetComponent<PickupNoteAdvScr>().triggeredNote)
             {
                 dialogueBox.SetActive(true);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "TimeShiftHintRec")
+        {
+            enteredTimeShiftHint = true;
         }
     }
 }
