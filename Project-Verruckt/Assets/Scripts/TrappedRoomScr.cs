@@ -16,6 +16,13 @@ public class TrappedRoomScr : MonoBehaviour
     public GameObject loseCanvas;
     public GameObject loseCanvasMerged;
     public GameObject gameOverSound;
+    string sceneName;
+
+    void Start()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
+    }
 
     void Update()
     {
@@ -48,12 +55,10 @@ public class TrappedRoomScr : MonoBehaviour
         if (other.gameObject.tag == "DoorStuck")
         {
             canBeStuck = true;
-
         }
         if (other.gameObject.tag == "DodgyPillsKillArea")
         {
             canBeMerged = true;
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -65,11 +70,10 @@ public class TrappedRoomScr : MonoBehaviour
         if (other.gameObject.tag == "DodgyPillsKillArea")
         {
             canBeMerged = false;
-
         }
     }
 
-    void TrappedRoom()
+    void TrappedRoom() // locked or blocked room
     {
         if (!fpsPlayer.GetComponent<PickUpObject>().isViewing && canBeStuck && fpsPlayer.GetComponent<PickUpObject>().totalPillsTaken > 0) // == fpsPlayer.GetComponent<PickUpObject>().pillsCollected)
         {
@@ -80,9 +84,9 @@ public class TrappedRoomScr : MonoBehaviour
             playerStuck = false;
         }
     }
-    void MergeArea()
+    void MergeArea() // area collapsed in current time
     {
-        if (!fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
+        if (sceneName == "labSceneRedone" && !fpsPlayer.GetComponent<DodgyPillScr>().dodgyPillTaken && canBeMerged && fpsPlayer.GetComponent<DodgyPillScr>().dPillsTotalTaken > 0)
         {
             playerMerge = true;
         }
@@ -91,6 +95,4 @@ public class TrappedRoomScr : MonoBehaviour
             playerMerge = false;
         }
     }
-
-
 }

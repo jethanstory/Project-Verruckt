@@ -6,11 +6,13 @@ public class PauseMenuScr : MonoBehaviour
 {
 
     public GameObject menuCanvas;
+
+    public GameObject fpsPlayer;
     public bool activeMenu;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !fpsPlayer.GetComponent<PickupNoteAdvScr>().activeCanvas)
         {
             checkMenu();
         }
@@ -26,14 +28,13 @@ public class PauseMenuScr : MonoBehaviour
             Cursor.visible = false;
             menuCanvas.SetActive(false);
         }
-        else
+        else if (!activeMenu )
         {
             activeMenu = true;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             menuCanvas.SetActive(true);
-
         }
     }
 }

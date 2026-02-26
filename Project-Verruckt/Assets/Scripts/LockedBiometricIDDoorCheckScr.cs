@@ -11,13 +11,10 @@ public class LockedBiometricIDDoorCheckScr : MonoBehaviour
     public GameObject buzzer;
     public GameObject crouchJumpText;
     public GameObject crouchJumpTrigger;
-
     public GameObject attachedObject;
 
     void Start()
-    {
-
-    }
+    { }
 
     void Update()
     {
@@ -51,6 +48,5 @@ public class LockedBiometricIDDoorCheckScr : MonoBehaviour
     {
         textShow.SetActive(false);
         crouchJumpText.SetActive(false);
-
     }
 }

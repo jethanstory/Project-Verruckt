@@ -43,7 +43,7 @@ public class PillTextScr : MonoBehaviour
                 // }
             }
         }
-        else if (fpsPlayer.GetComponent<DodgyPillScr>().dPillsCollected > 0)
+        else if (sceneName == "labSceneRedone" && fpsPlayer.GetComponent<DodgyPillScr>().dPillsCollected > 0)
         {
             secondsCount += Time.deltaTime;
             textControlsDodgy.SetActive(true);
@@ -59,6 +59,4 @@ public class PillTextScr : MonoBehaviour
             }
         }
     }
-
-
 }

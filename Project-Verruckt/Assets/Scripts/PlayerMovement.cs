@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;
 
 
-
     void Start()
     {
         m_StepCycled = 0f;
@@ -89,8 +88,6 @@ public class PlayerMovement : MonoBehaviour
 
         // m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
 
-
-
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
 
@@ -106,8 +103,6 @@ public class PlayerMovement : MonoBehaviour
             // m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
             //                  (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
             // newCameraPosition = m_Camera.transform.localPosition;
-
-
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -127,9 +122,7 @@ public class PlayerMovement : MonoBehaviour
             m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                              (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
             newCameraPosition = m_Camera.transform.localPosition;
-
         }
-
 
         else
         {
@@ -150,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
             //     CatchBreathTime += Time.deltaTime;
             //     CatchBreathAnimation(speed);
             // }
-
         }
         velocity.y += gravity * Time.deltaTime;
 
@@ -162,7 +154,6 @@ public class PlayerMovement : MonoBehaviour
         UpdateCameraPosition(speed);
         //CatchBreathAnimation(speed);
     }
-
 
     private void PlayJumpSound()
     {
@@ -233,7 +224,6 @@ public class PlayerMovement : MonoBehaviour
         // if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)  && (x != 0 || z != 0)
         if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
         {
-
             m_Camera.transform.localPosition =
                 m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                                   (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));
@@ -251,12 +241,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CatchBreathAnimation(float speed)
     {
-
         Vector3 newCameraPosition;
         // if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)  && (x != 0 || z != 0) && CatchBreathTime < 5    && CatchBreathTime < 10
         if (m_CharacterController.isGrounded)
         {
-
             m_Camera.transform.localPosition =
                 m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                                   (speed * (m_IsWalking ? 1f : m_RunstepLenghten)));

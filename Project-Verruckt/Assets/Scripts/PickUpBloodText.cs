@@ -5,17 +5,11 @@ using UnityEngine;
 public class PickUpBloodText : MonoBehaviour
 {
     float secondsCount = 0;
-
     public GameObject textControls;
-
     public GameObject fpsPlayer;
 
-
     void Start()
-    {
-
-    }
-
+    { }
 
     void Update()
     {
@@ -24,7 +18,6 @@ public class PickUpBloodText : MonoBehaviour
 
     void checkBlood()
     {
-        //if (fpsPlayer.GetComponent<PickupClockScr>().hasClock) {
         if (fpsPlayer.GetComponent<BloodPickupScr>().bloodCollected)
         {
             secondsCount += Time.deltaTime;
@@ -33,11 +26,6 @@ public class PickUpBloodText : MonoBehaviour
             if (secondsCount > 3)
             {
                 textControls.SetActive(false);
-                // textGoal.SetActive(true);
-                // if (secondsCount > 10)
-                // {
-                //     textGoal.SetActive(false);
-                // }
             }
         }
     }

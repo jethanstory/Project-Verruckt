@@ -6,8 +6,6 @@ public class SyringeTextScr : MonoBehaviour
 {
     public GameObject textDisplay;
     public GameObject fpsPlayer;
-
-    //bool endTime;
     public float secondsCount = 0;
 
 
@@ -21,24 +19,14 @@ public class SyringeTextScr : MonoBehaviour
     {
         if (fpsPlayer.GetComponent<PickupSyringeScr>().syringeCollected)
         {
-            //secondsCount = 0;
             secondsCount += Time.deltaTime;
             textDisplay.SetActive(true);
 
             if (secondsCount > 2)
             {
                 textDisplay.SetActive(false);
-                //endTime = true;
                 secondsCount = 100;
-                // textGoal.SetActive(true);
-                // if (secondsCount > 10)
-                // {
-                //     textGoal.SetActive(false);
-                // }
             }
-
         }
-
     }
-
 }

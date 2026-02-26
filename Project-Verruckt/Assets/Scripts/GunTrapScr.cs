@@ -5,19 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GunTrapScr : MonoBehaviour
 {
-
     public GameObject loseCanvas;
-
     public GameObject soundOn;
-
     public bool playerShot = false;
 
 
     void Start()
-    {
-
-    }
-
+    { }
 
     void Update()
     {
@@ -42,6 +36,5 @@ public class GunTrapScr : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         playerShot = false;
-
     }
 }

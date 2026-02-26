@@ -22,7 +22,6 @@ public class WanderAI : MonoBehaviour
         if (isWandering == false)
         {
             StartCoroutine(Wander());
-
         }
         if (isRotatingRight == true)
         {
@@ -37,8 +36,6 @@ public class WanderAI : MonoBehaviour
             transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
     }
-
-
 
     IEnumerator Wander()
     {
@@ -69,6 +66,4 @@ public class WanderAI : MonoBehaviour
             isRotatingLeft = false;
         }
     }
-
-
 }

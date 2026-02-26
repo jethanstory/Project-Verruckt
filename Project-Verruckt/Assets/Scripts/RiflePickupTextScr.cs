@@ -18,20 +18,13 @@ public class RiflePickupTextScr : MonoBehaviour
     {
         if (fpsPlayer.GetComponent<RiflePickupScr>().riflePickedUp)
         {
-            //secondsCount = 0;
             secondsCount += Time.deltaTime;
             textDisplay.SetActive(true);
 
             if (secondsCount > 2)
             {
                 textDisplay.SetActive(false);
-                //endTime = true;
                 secondsCount = 100;
-                // textGoal.SetActive(true);
-                // if (secondsCount > 10)
-                // {
-                //     textGoal.SetActive(false);
-                // }
             }
         }
     }

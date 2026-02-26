@@ -11,7 +11,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class ThrowingObject : MonoBehaviour
 
 {
-    
+
 
     public Transform spawnPoint;
     public GameObject flare;
@@ -41,9 +41,8 @@ public class ThrowingObject : MonoBehaviour
     public GameObject ObjectIwantToPickUp; // the gameobject onwhich you collided with
 
 
-
-
-    void Start () {
+    void Start()
+    {
         //light = GetComponent<Light> ();
         //light2 = GetComponent<Light> ();
         //light3 = GetComponent<Light> ();
@@ -52,11 +51,8 @@ public class ThrowingObject : MonoBehaviour
     }
 
     void FixedUpdate()
-
     {
-
         if (Input.GetMouseButtonDown(0) && canThrow == true)
-
         {
             Destroy(flare);
 
@@ -67,24 +63,19 @@ public class ThrowingObject : MonoBehaviour
             canThrow = false;
 
         }
-
     }
 
     public void delay() // whenever this function is called the object gets destroyed
-
     {
-
         //Destroy(gameObject);
-
-
     }
     private void Launch()
     {
-        
+
         flare.transform.SetParent(null);
         GameObject flareInstance = Instantiate(flare, spawnPoint.position, spawnPoint.rotation);
         flareInstance.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * range, ForceMode.Impulse);
-        flareInstance.GetComponent <ParticleSystem>().Play ();
+        flareInstance.GetComponent<ParticleSystem>().Play();
         //flareInstance.GetComponent <AudioSource>().Play ();
 
         ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
@@ -102,8 +93,7 @@ public class ThrowingObject : MonoBehaviour
         {
             light.SetActive(lightEnabled);
         }
-        
-        
+
         /*
         //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;   //makes the rigidbody not be acted upon by forces
         ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
@@ -113,19 +103,12 @@ public class ThrowingObject : MonoBehaviour
         */
         //foreach (var audioSource in sounds)
         //{
-          //  audioSource.SetActive(lightEnabled);
+        //  audioSource.SetActive(lightEnabled);
         //}
 
-        
+
         //light.enabled = true;
         //light2.enabled = true;
         //light3.enabled = true;
-
-
-
-
-
-
     }
-
 }

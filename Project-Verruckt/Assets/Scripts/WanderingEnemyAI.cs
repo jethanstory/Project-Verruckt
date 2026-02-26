@@ -26,8 +26,6 @@ public class WanderingEnemyAI : MonoBehaviour
 
     //public AudioSource audioSource;
 
-
-
     //private Light enemyLight;
 
     void Start()
@@ -61,7 +59,6 @@ public class WanderingEnemyAI : MonoBehaviour
 
         else
         {
-
             GameObject.Find("WanderingEnemy").GetComponent<AdvancedWanderAI>().enabled = true;
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
             //Wander to player position
@@ -69,7 +66,6 @@ public class WanderingEnemyAI : MonoBehaviour
 
             //myRenderer.material.color = Color.blue;
             //enemyLight.color = Color.white;
-
         }
     }
 
@@ -82,7 +78,6 @@ public class WanderingEnemyAI : MonoBehaviour
         {
             light.SetActive(lightEnabled);
         }
-
 
         /*else if (isOn == true)
         {

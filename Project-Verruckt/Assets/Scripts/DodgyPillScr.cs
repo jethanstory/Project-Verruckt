@@ -111,6 +111,7 @@ public class DodgyPillScr : MonoBehaviour
         else
         {
             endPillTime = 0;
+            inBetweenSwapTime = 0;
             if (!fpsPlayer.GetComponent<PickUpObject>().isViewing)
             {
                 torchObject.SetActive(true);
@@ -119,7 +120,7 @@ public class DodgyPillScr : MonoBehaviour
 
     }
 
-    private void InBetween()
+    private void InBetween() // flicking between the two time eras
     {
         // cinematicSoundFast.SetActive(true);
         randChangeTime = Random.Range(0f, 1f);
@@ -155,8 +156,6 @@ public class DodgyPillScr : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other)
-    {
-
-    }
+    { }
 
 }

@@ -10,12 +10,14 @@ public class PickupKeyScr : MonoBehaviour
     public GameObject keySound;
 
     public int keysCollected;
-    public int maxKeys;
+    public int maxKeys; // total amount of keys in level
 
     public bool canUnlock;
     public bool firstKeyCollected;
     public bool secondKeyCollected;
-
+    public GameObject pickupKeyPressText;
+    public bool pickupKeyTrigger;
+    public bool pickupSecondKeyTrigger;
 
     void Start()
     {
@@ -26,15 +28,31 @@ public class PickupKeyScr : MonoBehaviour
     void Update()
     {
         if (canpickup == true) // if you enter thecollider of the objecct
-        {
-
-
-        }
+        { }
         if (keysCollected >= maxKeys)
         {
             canUnlock = true;
         }
-
+        if (Input.GetKeyDown(KeyCode.E) && pickupKeyTrigger)
+        {
+            if (ObjectIwantToDestroy != null)
+                Destroy(ObjectIwantToDestroy);
+            keysCollected += 1;
+            firstKeyCollected = true;
+            keySound.SetActive(false);
+            keySound.SetActive(true);
+            pickupKeyPressText.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.E) && pickupSecondKeyTrigger)
+        {
+            if (ObjectIwantToDestroy != null)
+                Destroy(ObjectIwantToDestroy);
+            keysCollected += 1;
+            secondKeyCollected = true;
+            keySound.SetActive(false);
+            keySound.SetActive(true);
+            pickupKeyPressText.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
@@ -43,28 +61,31 @@ public class PickupKeyScr : MonoBehaviour
         {
             canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
-            Destroy(ObjectIwantToDestroy);
-            keysCollected += 1;
-            firstKeyCollected = true;
-            keySound.SetActive(false);
-            keySound.SetActive(true);
+            pickupKeyPressText.SetActive(true);
+            pickupKeyTrigger = true;
         }
 
         if (other.gameObject.tag == "SecondKey") //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             canpickup = true;  //set the pick up bool to true
             ObjectIwantToDestroy = other.gameObject; //set the gameobject you collided with to one you can reference
-            Destroy(ObjectIwantToDestroy);
-            keysCollected += 1;
-            secondKeyCollected = true;
-            keySound.SetActive(false);
-            keySound.SetActive(true);
+            pickupKeyPressText.SetActive(true);
+            pickupSecondKeyTrigger = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.tag == "Key") //on the object you want to pick up set the tag to be anything, in this case "object"
+        {
+            pickupKeyTrigger = false;
+            pickupKeyPressText.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "SecondKey") //on the object you want to pick up set the tag to be anything, in this case "object"
+        {
+            pickupKeyPressText.SetActive(false);
+            pickupSecondKeyTrigger = false;
+        }
         canpickup = false; //when you leave the collider set the canpickup bool to false
-
     }
-
 }
